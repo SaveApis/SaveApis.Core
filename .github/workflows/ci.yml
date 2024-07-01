@@ -81,4 +81,3 @@ jobs:
         run: |
           dotnet test --no-restore --nologo --no-build --configuration Release Tests/SaveApis.Core.Integration/SaveApis.Core.Integration.csproj
           dotnet test --no-restore --nologo --no-build --configuration Release Tests/SaveApis.Core.Unit/SaveApis.Core.Unit.csproj
-        
