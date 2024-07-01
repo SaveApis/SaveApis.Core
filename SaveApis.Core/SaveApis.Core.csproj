@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Title>SaveApis.Core</Title>
+        <Authors>SaveApis | Software Development &amp; Deployment</Authors>
+        <RepositoryUrl>https://github.com/SaveApis/SaveApis.Core/</RepositoryUrl>
+        <RepositoryType>GitHub</RepositoryType>
+        <Version>1.0.0</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+</Project>
