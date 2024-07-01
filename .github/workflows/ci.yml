@@ -1,0 +1,83 @@
+﻿name: CI
+on:
+  push:
+    paths:
+      - 'SaveApis.Core/**'
+      - 'Tests/**'
+      - '.github/workflows/ci.yml'
+    branches-ignore:
+      - main
+  pull_request:
+    paths:
+      - 'SaveApis.Core/**'
+      - 'Tests/**'
+      - '.github/workflows/ci.yml'
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Super-linter
+        uses: super-linter/super-linter@v6.6.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_CSHARP: true
+          VALIDATE_GITHUB_ACTIONS: true
+  build:
+    needs:
+      - lint
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore Dependencies
+        run: |
+          dotnet restore SaveApis.Core/SaveApis.Core.csproj
+          dotnet restore Tests/SaveApis.Core.Integration/SaveApis.Core.Integration.csproj
+          dotnet restore Tests/SaveApis.Core.Unit/SaveApis.Core.Unit.csproj
+      - name: Build
+        run: |
+          dotnet build --no-restore --nologo --configuration Release SaveApis.Core/SaveApis.Core.csproj
+          dotnet build --no-restore --nologo --configuration Release Tests/SaveApis.Core.Integration/SaveApis.Core.Integration.csproj
+          dotnet build --no-restore --nologo --configuration Release Tests/SaveApis.Core.Unit/SaveApis.Core.Unit.csproj
+  test:
+    needs:
+      - build
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore Dependencies
+        run: |
+          dotnet restore SaveApis.Core/SaveApis.Core.csproj
+          dotnet restore Tests/SaveApis.Core.Integration/SaveApis.Core.Integration.csproj
+          dotnet restore Tests/SaveApis.Core.Unit/SaveApis.Core.Unit.csproj
+      - name: Build tests
+        run: |
+          dotnet build --no-restore --nologo --configuration Release Tests/SaveApis.Core.Integration/SaveApis.Core.Integration.csproj
+          dotnet build --no-restore --nologo --configuration Release Tests/SaveApis.Core.Unit/SaveApis.Core.Unit.csproj
+      - name: Run tests
+        run: |
+          dotnet test --no-restore --nologo --no-build --configuration Release Tests/SaveApis.Core.Integration/SaveApis.Core.Integration.csproj
+          dotnet test --no-restore --nologo --no-build --configuration Release Tests/SaveApis.Core.Unit/SaveApis.Core.Unit.csproj
