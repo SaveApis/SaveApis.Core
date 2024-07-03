@@ -5,6 +5,11 @@
         <option name="composeProjectName" value="example" />
         <option name="envFilePath" value="" />
         <option name="commandLineOptions" value="--build" />
+        <option name="services">
+          <list>
+            <option value="web" />
+          </list>
+        </option>
         <option name="sourceFilePath" value="Docker/docker-compose.yml" />
         <option name="upForceRecreate" value="true" />
         <option name="upRemoveOrphans" value="true" />
