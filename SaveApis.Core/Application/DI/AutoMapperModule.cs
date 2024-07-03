@@ -8,6 +8,6 @@ public class AutoMapperModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterAutoMapper(false, WebApplicationBuilderExtension.Assemblies.ToArray());
+        builder.RegisterAutoMapper(false, WebApplicationBuilderExtension.Assemblies);
     }
 }
