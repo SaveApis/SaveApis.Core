@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Hangfire;
+using Hangfire.Dashboard;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,8 +12,15 @@ public static class WebApplicationExtension
 {
     public static async Task RunSaveApisAsync(this WebApplication application)
     {
-        var mediator = application.Services.CreateScope().ServiceProvider.GetRequiredService<IMediator>();
+        var dashboardAuthorizationFilters = application.Services.CreateScope().ServiceProvider
+            .GetServices<IDashboardAuthorizationFilter>().ToArray();
+        var options = new DashboardOptions
+        {
+            Authorization = application.Environment.IsDevelopment() ? [] : dashboardAuthorizationFilters
+        };
+        application.UseHangfireDashboard("/hangfire", options);
 
+        var mediator = application.Services.CreateScope().ServiceProvider.GetRequiredService<IMediator>();
         await application.StartAsync();
         await mediator.Publish(new ApplicationStartedEvent());
         await application.WaitForShutdownAsync();

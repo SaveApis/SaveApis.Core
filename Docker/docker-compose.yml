@@ -1,10 +1,40 @@
 ﻿services:
   web:
+    hostname: web
+    depends_on:
+      redis:
+        condition: service_healthy
     build:
       context: ..
       dockerfile: Example/SaveApis.Core.Example/Dockerfile
     environment:
+      # Log Configuration
+      - SAVEAPIS_LOG_LEVEL=Information
+
+      # ASP.NET Core Configuration
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=80
+      
+      # Hangfire Redis Configuration (#20)
+      - HANGFIRE_REDIS_NAME=example
+      - HANGFIRE_REDIS_HOST=redis
+      - HANGFIRE_REDIS_PORT=6379
+      - HANGFIRE_REDIS_DATABASE=0
+      - HANGFIRE_REDIS_USERNAME=example
+      - HANGFIRE_REDIS_PASSWORD=example
+      - HANGFIRE_REDIS_SSL=False
     ports:
       - 80:80
+  redis:
+    hostname: redis
+    image: redis:7.4-rc2
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      interval: 1s
+
+volumes:
+  redis-data:

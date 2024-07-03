@@ -13,12 +13,11 @@ public class MediatorModule : Module
         var collection = new ServiceCollection();
 
         collection.AddMediatR(configuration =>
-            configuration.RegisterServicesFromAssemblies(WebApplicationBuilderExtension.Assemblies.Distinct()
-                .ToArray()));
+            configuration.RegisterServicesFromAssemblies(WebApplicationBuilderExtension.Assemblies));
 
         builder.Populate(collection);
 
-        builder.RegisterAssemblyTypes(WebApplicationBuilderExtension.Assemblies.Distinct().ToArray())
+        builder.RegisterAssemblyTypes(WebApplicationBuilderExtension.Assemblies)
             .Where(t => t.GetInterfaces().Any(i => i.IsAssignableTo(typeof(IEvent)))).AsImplementedInterfaces();
     }
 }

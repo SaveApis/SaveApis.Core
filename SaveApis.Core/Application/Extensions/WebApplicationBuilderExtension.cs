@@ -7,12 +7,13 @@ namespace SaveApis.Core.Application.Extensions;
 
 public static class WebApplicationBuilderExtension
 {
-    internal static List<Assembly> Assemblies { get; } = [Assembly.GetExecutingAssembly()];
+    private static readonly List<Assembly> AssemblyStorage = [Assembly.GetExecutingAssembly()];
+    internal static Assembly[] Assemblies => AssemblyStorage.Distinct().ToArray();
 
 
     public static WebApplicationBuilder WithAssemblies(this WebApplicationBuilder builder, params Assembly[] assemblies)
     {
-        Assemblies.AddRange(assemblies);
+        AssemblyStorage.AddRange(assemblies);
         return builder;
     }
 
@@ -21,7 +22,7 @@ public static class WebApplicationBuilderExtension
         builder.Host
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>((_, containerBuilder) =>
-                containerBuilder.RegisterAssemblyModules(Assemblies.Distinct().ToArray()));
+                containerBuilder.RegisterAssemblyModules(Assemblies));
         return builder;
     }
 }
