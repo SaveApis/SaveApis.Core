@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.3.0"></a>
+## [1.3.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.3.0) (2024-07-08)
+
+### Features
+
+* **modules:** JWT Module ([#31](https://www.github.com/SaveApis/SaveApis.Core/issues/31)) ([c43b483](https://www.github.com/SaveApis/SaveApis.Core/commit/c43b483f3806efa85e1f017735bca32009106275))
+* **modules:** SignalR Module ([#27](https://www.github.com/SaveApis/SaveApis.Core/issues/27)) ([f439754](https://www.github.com/SaveApis/SaveApis.Core/commit/f4397547610d59a4815ee9af7524c155b066eab1))
+* **modules:** Swagger Module ([#30](https://www.github.com/SaveApis/SaveApis.Core/issues/30)) ([2689b2e](https://www.github.com/SaveApis/SaveApis.Core/commit/2689b2e8d63ec99768828c594da29e4b9100545e))
+
 <a name="1.2.0"></a>
 ## [1.2.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.2.0) (2024-07-03)
 
