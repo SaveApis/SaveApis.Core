@@ -20,6 +20,12 @@ public static class WebApplicationExtension
         };
         application.UseHangfireDashboard("/hangfire", options);
 
+        if (application.Environment.IsDevelopment())
+        {
+            application.UseSwagger();
+            application.UseSwaggerUI();
+        }
+
         var mediator = application.Services.CreateScope().ServiceProvider.GetRequiredService<IMediator>();
         await application.StartAsync();
         await mediator.Publish(new ApplicationStartedEvent());
