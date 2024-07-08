@@ -23,6 +23,12 @@
       - HANGFIRE_REDIS_USERNAME=example
       - HANGFIRE_REDIS_PASSWORD=example
       - HANGFIRE_REDIS_SSL=False
+
+      # JWT Configuration (#28)
+      - JWT_ISSUER=example
+      - JWT_AUDIENCE=example
+      - JWT_KEY=yourRandomWith64OrMoreLengthKeyWhichShouldBeStoredSafetyAndShouldNotBeSharedWithOtherPeople
+      - JWT_EXPIRATION_IN_HOURS=8
     ports:
       - 80:80
   redis:
