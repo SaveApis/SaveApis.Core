@@ -1,5 +1,6 @@
 using System.Reflection;
 using SaveApis.Core.Application.Extensions;
+using SaveApis.Core.Example.Application.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().RequireAuthorization();
+app.MapHub<TestHub>("/test").RequireAuthorization();
 
 await app.RunSaveApisAsync();
