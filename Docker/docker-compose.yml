@@ -4,6 +4,8 @@
     depends_on:
       redis:
         condition: service_healthy
+      mysql:
+        condition: service_healthy
     build:
       context: ..
       dockerfile: Example/SaveApis.Core.Example/Dockerfile
@@ -29,18 +31,39 @@
       - JWT_AUDIENCE=example
       - JWT_KEY=yourRandomWith64OrMoreLengthKeyWhichShouldBeStoredSafetyAndShouldNotBeSharedWithOtherPeople
       - JWT_EXPIRATION_IN_HOURS=8
+      
+      # Entity Framework Core Configuration (#42)
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=example
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=example
     ports:
-      - 80:80
+      - "80:80"
   redis:
     hostname: redis
-    image: redis:7.4-rc2
+    image: redis:latest
     ports:
-      - 6379:6379
+      - "6379:6379"
     volumes:
       - redis-data:/data
     healthcheck:
       test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
       interval: 1s
+  mysql:
+    hostname: mysql
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 1s
+      start_period: 5s
 
 volumes:
   redis-data:
+  mysql-data:
