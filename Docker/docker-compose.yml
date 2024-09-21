@@ -38,6 +38,12 @@
       - MYSQL_DATABASE=example
       - MYSQL_USER=root
       - MYSQL_PASSWORD=example
+      
+      # EasyCaching Configuration (#40)
+      - EASYCACHING_REDIS_HOST=redis
+      - EASYCACHING_REDIS_PORT=6379
+      - EASYCACHING_REDIS_DATABASE=1
+      - EASYCACHING_REDIS_BUS_DATABASE=2
     ports:
       - "80:80"
   redis:
