@@ -11,7 +11,7 @@ public class TestApplicationJob(ILogger logger) : BaseJob<ApplicationStartedEven
     [JobDisplayName("Test Job")]
     public override Task RunAsync(ApplicationStartedEvent @event, CancellationToken cancellationToken = default)
     {
-        Log(LogEventLevel.Information, "Job executed at application start! {EventName}", @event.GetType().Name);
+        Log(LogEventLevel.Information, "Job executed at application start! {EventName}", null, @event.GetType().Name);
         return Task.CompletedTask;
     }
 }

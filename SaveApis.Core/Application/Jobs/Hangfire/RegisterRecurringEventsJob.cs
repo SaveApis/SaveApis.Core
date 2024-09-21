@@ -16,7 +16,7 @@ public class RegisterRecurringEventsJob(ILogger logger, IRecurringJobManager man
     {
         foreach (var jobEvent in events)
         {
-            Log(LogEventLevel.Information, "Register {Name}", jobEvent.GetType().Name);
+            Log(LogEventLevel.Information, "Register {Name}", null, jobEvent.GetType().Name);
             manager.AddOrUpdate(jobEvent.Id, () => Publish(jobEvent, cancellationToken), jobEvent.CronExpression);
         }
         return Task.CompletedTask;

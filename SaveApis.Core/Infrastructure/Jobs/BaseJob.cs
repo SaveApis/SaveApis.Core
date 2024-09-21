@@ -14,8 +14,8 @@ public abstract class BaseJob<TEvent>(ILogger logger) : IJob<TEvent>
     public abstract Task RunAsync(TEvent @event, CancellationToken cancellationToken = default);
 
     [MessageTemplateFormatMethod("message")]
-    protected void Log(LogEventLevel level, string message, params object[] args)
+    protected void Log(LogEventLevel level, string message, Exception? exception = null, params object[] args)
     {
-        logger.Write(level, $"{{JobName}} | {message}", [GetType().Name, .. args]);
+        logger.Write(level, exception, $"{{JobName}} | {message}", [GetType().Name, .. args]);
     }
 }

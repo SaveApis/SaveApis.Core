@@ -20,7 +20,7 @@ public class CleanupRecurringEventsJob(ILogger logger, IRecurringJobManager mana
 
         foreach (var id in idsToRemove)
         {
-            Log(LogEventLevel.Information, "Remove outdated Event: {Name}", id);
+            Log(LogEventLevel.Information, "Remove outdated Event: {Name}", null, id);
             manager.RemoveIfExists(id);
         }
 
