@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.4.0"></a>
+## [1.4.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.4.0) (2024-09-21)
+
+### Features
+
+* **modules:** EasyCaching Module ([#44](https://www.github.com/SaveApis/SaveApis.Core/issues/44)) ([ecd3eb1](https://www.github.com/SaveApis/SaveApis.Core/commit/ecd3eb15ed0c609820beece77166eedfe25d9cbd))
+* **modules:** EntityFramework Module ([#43](https://www.github.com/SaveApis/SaveApis.Core/issues/43)) ([2a5c7c7](https://www.github.com/SaveApis/SaveApis.Core/commit/2a5c7c78a8253871c9acedcce0a6e1077e073f02))
+
+### Bug Fixes
+
+* **github:** Fix secret variable names ([#37](https://www.github.com/SaveApis/SaveApis.Core/issues/37)) ([c1b95c9](https://www.github.com/SaveApis/SaveApis.Core/commit/c1b95c985765a43e42e856bae7688208c94b43cd))
+
 <a name="1.3.0"></a>
 ## [1.3.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.3.0) (2024-07-08)
 
