@@ -26,6 +26,7 @@ public class MigrateContextJob(ILogger logger, IEnumerable<DbContext> registered
             catch (Exception e)
             {
                 Log(LogEventLevel.Error, "Error migrating Context: {Name}", e, context.GetType().Name);
+                throw;
             }
         }
     }
