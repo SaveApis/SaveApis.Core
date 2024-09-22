@@ -53,6 +53,7 @@ public class EfCoreModule : Module
         builder.RegisterAssemblyTypes(assemblies)
             .Where(t => t.IsAssignableTo(typeof(IDbContext)))
             .AsImplementedInterfaces()
-            .As<DbContext>();
+            .As<DbContext>()
+            .AsSelf();
     }
 }
