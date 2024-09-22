@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.4.1"></a>
+## [1.4.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.4.1) (2024-09-22)
+
+### Bug Fixes
+
+* **jobs:** Fail migration job on migration error ([#47](https://www.github.com/SaveApis/SaveApis.Core/issues/47)) ([c35205c](https://www.github.com/SaveApis/SaveApis.Core/commit/c35205cbc3c5739360006a3c5f33f5dd30eb7526))
+* **modules:** Register DbContext as self ([#48](https://www.github.com/SaveApis/SaveApis.Core/issues/48)) ([4c41555](https://www.github.com/SaveApis/SaveApis.Core/commit/4c41555933275df2d08977caf69b70b2722dd323))
+
 <a name="1.4.0"></a>
 ## [1.4.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.4.0) (2024-09-21)
 
