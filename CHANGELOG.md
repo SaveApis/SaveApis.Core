@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.5.0"></a>
+## [1.5.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.5.0) (2024-09-22)
+
+### Features
+
+* Default regex generator ([#52](https://www.github.com/SaveApis/SaveApis.Core/issues/52)) ([1353024](https://www.github.com/SaveApis/SaveApis.Core/commit/1353024277e9df26aa28a77e4f93703654e81187))
+* **events:** Trigger additional events ([#51](https://www.github.com/SaveApis/SaveApis.Core/issues/51)) ([371a9fd](https://www.github.com/SaveApis/SaveApis.Core/commit/371a9fd515f23b90d1e94694cbd02ddb5f7ec4a5))
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.4.1) (2024-09-22)
 
