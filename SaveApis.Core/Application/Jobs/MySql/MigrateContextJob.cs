@@ -1,6 +1,8 @@
 ﻿using Hangfire;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SaveApis.Core.Application.Events;
+using SaveApis.Core.Application.Events.MySql;
 using SaveApis.Core.Infrastructure.Jobs;
 using Serilog;
 using Serilog.Events;
@@ -8,7 +10,7 @@ using Serilog.Events;
 namespace SaveApis.Core.Application.Jobs.MySql;
 
 [Queue("system")]
-public class MigrateContextJob(ILogger logger, IEnumerable<DbContext> registeredContexts) : BaseJob<ApplicationStartedEvent>(logger)
+public class MigrateContextJob(ILogger logger, IMediator mediator, IEnumerable<DbContext> registeredContexts) : BaseJob<ApplicationStartedEvent>(logger)
 {
 
     [JobDisplayName("Migrate DbContext")]
@@ -29,5 +31,7 @@ public class MigrateContextJob(ILogger logger, IEnumerable<DbContext> registered
                 throw;
             }
         }
+
+        await mediator.Publish(new MigrationCompletedEvent(), cancellationToken);
     }
 }
