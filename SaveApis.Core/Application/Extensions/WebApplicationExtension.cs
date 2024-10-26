@@ -26,6 +26,12 @@ public static class WebApplicationExtension
             application.UseSwaggerUI();
         }
 
+        application.UseAuthentication();
+        application.UseAuthorization();
+
+        application.MapControllers().RequireAuthorization();
+        application.MapGraphQL();
+
         var mediator = application.Services.CreateScope().ServiceProvider.GetRequiredService<IMediator>();
         await application.StartAsync();
         await mediator.Publish(new ApplicationStartedEvent());

@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Hangfire;
 using Hangfire.Dashboard;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SaveApis.Core.Application.Extensions;
 using SaveApis.Core.Infrastructure.Hangfire.Types;
@@ -10,7 +11,7 @@ using SaveApis.Core.Infrastructure.Jobs.Interfaces;
 
 namespace SaveApis.Core.Application.DI;
 
-public class HangfireModule : Module
+public class HangfireModule(IConfiguration configuration) : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
@@ -40,15 +41,15 @@ public class HangfireModule : Module
             .AsImplementedInterfaces();
     }
 
-    private static string GenerateRedisConnectionString()
+    private string GenerateRedisConnectionString()
     {
-        var name = Environment.GetEnvironmentVariable("HANGFIRE_REDIS_NAME");
-        var host = Environment.GetEnvironmentVariable("HANGFIRE_REDIS_HOST") ?? "localhost";
-        var port = Environment.GetEnvironmentVariable("HANGFIRE_REDIS_PORT") ?? "6379";
-        var database = Environment.GetEnvironmentVariable("HANGFIRE_REDIS_DATABASE") ?? "0";
-        var username = Environment.GetEnvironmentVariable("HANGFIRE_REDIS_USERNAME");
-        var password = Environment.GetEnvironmentVariable("HANGFIRE_REDIS_PASSWORD");
-        var ssl = Environment.GetEnvironmentVariable("HANGFIRE_REDIS_SSL") ?? "false";
+        var name = configuration["HANGFIRE_REDIS_NAME"] ?? throw new ArgumentException("HANGFIRE_REDIS_NAME");
+        var host = configuration["HANGFIRE_REDIS_HOST"] ?? throw new ArgumentException("HANGFIRE_REDIS_HOST");
+        var port = configuration["HANGFIRE_REDIS_PORT"] ?? throw new ArgumentException("HANGFIRE_REDIS_PORT");
+        var database = configuration["HANGFIRE_REDIS_DATABASE"] ?? throw new ArgumentException("HANGFIRE_REDIS_DATABASE");
+        var username = configuration["HANGFIRE_REDIS_USERNAME"] ?? string.Empty;
+        var password = configuration["HANGFIRE_REDIS_PASSWORD"] ?? string.Empty;
+        var ssl = configuration["HANGFIRE_REDIS_SSL"] ?? "false";
 
         var stringBuilder = new StringBuilder();
         stringBuilder.Append(host).Append(':').Append(port).Append(',')

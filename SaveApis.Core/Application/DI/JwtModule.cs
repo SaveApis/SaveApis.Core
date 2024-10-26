@@ -2,6 +2,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -11,41 +12,41 @@ using SaveApis.Core.Infrastructure.Settings;
 
 namespace SaveApis.Core.Application.DI;
 
-public class JwtModule : Module
+public class JwtModule(IConfiguration configuration) : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
         var collection = new ServiceCollection();
 
-        var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER")
+        var issuer = configuration["JWT_ISSUER"]
 #if !DEBUG
                      ?? "debug"
 #else
-                     ?? throw new ArgumentNullException("JWT_ISSUER")
+                     ?? throw new ArgumentException("JWT_ISSUER")
 #endif
             ;
-        var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE")
+        var audience = configuration["JWT_AUDIENCE"]
 #if !DEBUG
                        ?? "debug"
 #else
-                       ?? throw new ArgumentNullException("JWT_AUDIENCE")
+                       ?? throw new ArgumentException("JWT_AUDIENCE")
 #endif
             ;
 
-        var key = Environment.GetEnvironmentVariable("JWT_KEY")
+        var key = configuration["JWT_KEY"]
 #if !DEBUG
                   ?? "yourRandomWith64OrMoreLengthKeyWhichShouldBeStoredSafetyAndShouldNotBeSharedWithOtherPeople"
 #else
-                  ?? throw new ArgumentNullException("JWT_KEY")
+                  ?? throw new ArgumentException("JWT_KEY")
 #endif
             ;
         var expirationInHours =
-                uint.TryParse(Environment.GetEnvironmentVariable("JWT_EXPIRATION_IN_HOURS"), out var hours)
+                uint.TryParse(configuration["JWT_EXPIRATION_IN_HOURS"], out var hours)
                     ? hours
 #if !DEBUG
                     : 8
 #else
-                    : throw new ArgumentNullException("JWT_EXPIRATION_IN_HOURS")
+                    : throw new ArgumentException("JWT_EXPIRATION_IN_HOURS")
 #endif
             ;
 

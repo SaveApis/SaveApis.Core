@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MySqlConnector;
 using SaveApis.Core.Application.Extensions;
@@ -8,17 +9,17 @@ using SaveApis.Core.Infrastructure.Persistence.MySql.Interfaces;
 
 namespace SaveApis.Core.Application.DI;
 
-public class EfCoreModule : Module
+public class EfCoreModule(IConfiguration configuration) : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
         var connectionStringBuilder = new MySqlConnectionStringBuilder
         {
-            Server = Environment.GetEnvironmentVariable("MYSQL_HOST"),
-            Port = uint.Parse(Environment.GetEnvironmentVariable("MYSQL_PORT") ?? "3306"),
-            Database = Environment.GetEnvironmentVariable("MYSQL_DATABASE"),
-            UserID = Environment.GetEnvironmentVariable("MYSQL_USER"),
-            Password = Environment.GetEnvironmentVariable("MYSQL_PASSWORD"),
+            Server = configuration["MYSQL_HOST"] ?? throw new ArgumentException("MYSQL_HOST"),
+            Port = uint.Parse(configuration["MYSQL_PORT"] ?? throw new ArgumentException("MYSQL_PORT")),
+            Database = configuration["MYSQL_DATABASE"] ?? throw new ArgumentException("MYSQL_DATABASE"),
+            UserID = configuration["MYSQL_USER"] ?? throw new ArgumentException("MYSQL_USER"),
+            Password = configuration["MYSQL_PASSWORD"] ?? throw new ArgumentException("MYSQL_PASSWORD"),
             BrowsableConnectionString = false,
         };
 

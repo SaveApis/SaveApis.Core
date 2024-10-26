@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Events;
@@ -7,25 +8,25 @@ using Serilog.Sinks.SystemConsole.Themes;
 
 namespace SaveApis.Core.Application.DI;
 
-public class SerilogModule : Module
+public class SerilogModule(IConfiguration configuration) : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
         var collection = new ServiceCollection();
-        collection.AddSerilog(configuration =>
+        collection.AddSerilog(config =>
         {
-            var logLevel = Environment.GetEnvironmentVariable("SAVEAPIS_LOG_LEVEL") ?? "Information";
-            configuration = Enum.Parse<LogEventLevel>(logLevel) switch
+            var logLevel = configuration["SAVEAPIS_LOG_LEVEL"] ?? "Information";
+            config = Enum.Parse<LogEventLevel>(logLevel) switch
             {
-                LogEventLevel.Debug => configuration.MinimumLevel.Debug(),
-                LogEventLevel.Verbose => configuration.MinimumLevel.Verbose(),
-                LogEventLevel.Information => configuration.MinimumLevel.Information(),
-                LogEventLevel.Warning => configuration.MinimumLevel.Warning(),
-                LogEventLevel.Error => configuration.MinimumLevel.Error(),
-                LogEventLevel.Fatal => configuration.MinimumLevel.Fatal(),
-                _ => configuration.MinimumLevel.Information()
+                LogEventLevel.Debug => config.MinimumLevel.Debug(),
+                LogEventLevel.Verbose => config.MinimumLevel.Verbose(),
+                LogEventLevel.Information => config.MinimumLevel.Information(),
+                LogEventLevel.Warning => config.MinimumLevel.Warning(),
+                LogEventLevel.Error => config.MinimumLevel.Error(),
+                LogEventLevel.Fatal => config.MinimumLevel.Fatal(),
+                _ => config.MinimumLevel.Information()
             };
-            configuration
+            config
                 .MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Error)
                 .Enrich.FromLogContext()
                 .WriteTo.Console(

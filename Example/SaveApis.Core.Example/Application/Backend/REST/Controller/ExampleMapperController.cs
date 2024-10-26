@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SaveApis.Core.Example.Application.Models;
 using SaveApis.Core.Example.Application.Models.DTO;
 
-namespace SaveApis.Core.Example.Application.REST.Controller;
+namespace SaveApis.Core.Example.Application.Backend.REST.Controller;
 
 [ApiController]
 [Route("mapper")]

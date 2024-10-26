@@ -1,11 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using EasyCaching.Core.Configurations;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace SaveApis.Core.Application.DI;
 
-public class EasyCachingModule : Module
+public class EasyCachingModule(IConfiguration configuration) : Module
 {
     private const string Json = "json";
     private const string InMemory = "inmemory";
@@ -18,12 +19,18 @@ public class EasyCachingModule : Module
 
         collection.AddEasyCaching(options =>
         {
-            var host = Environment.GetEnvironmentVariable("EASYCACHING_REDIS_HOST") ?? "localhost";
-            var port = Environment.GetEnvironmentVariable("EASYCACHING_REDIS_PORT") ?? "6379";
-            var redisDatabase = Environment.GetEnvironmentVariable("EASYCACHING_REDIS_DATABASE") ?? "0";
-            var busDatabase = Environment.GetEnvironmentVariable("EASYCACHING_REDIS_BUS_DATABASE") ?? "0";
+            var host = configuration["EASYCACHING_REDIS_HOST"] ??
+                       throw new ArgumentException("EASYCACHING_REDIS_HOST");
+            var port = configuration["EASYCACHING_REDIS_PORT"] ??
+                       throw new ArgumentException("EASYCACHING_REDIS_PORT");
+            var redisDatabase = configuration["EASYCACHING_REDIS_DATABASE"] ??
+                                throw new ArgumentException("EASYCACHING_REDIS_DATABASE");
+            var busDatabase = configuration["EASYCACHING_REDIS_BUS_DATABASE"] ??
+                              throw new ArgumentException("EASYCACHING_REDIS_BUS_DATABASE");
 
-            var endpoint = new ServerEndPoint(host, int.Parse(port));
+            var endpoint = new ServerEndPoint(host, int.TryParse(port, out var p)
+                ? p
+                : throw new ArgumentException("EASYCACHING_REDIS_PORT"));
 
             options.WithJson(Json);
             options.UseInMemory(InMemory);
