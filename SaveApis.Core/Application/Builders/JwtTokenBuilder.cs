@@ -4,7 +4,6 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SaveApis.Core.Application.Builders.Interfaces;
-using SaveApis.Core.Infrastructure.Builders;
 using SaveApis.Core.Infrastructure.Settings;
 
 namespace SaveApis.Core.Application.Builders;
@@ -18,6 +17,7 @@ public class JwtTokenBuilder(IOptions<JwtSettings> jwtOptions) : IJwtTokenBuilde
         Claims[type] = value;
         return this;
     }
+
     public Task<string> Build()
     {
         var settings = jwtOptions.Value;

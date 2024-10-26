@@ -11,11 +11,16 @@ public record CacheKey(CacheName CacheName, string Key)
 
     public CacheKey Append(string key)
     {
-        return Create(CacheName, $"{Key}-{key}");
+        return Create(CacheName, $"{Key}:{key}");
+    }
+
+    public static implicit operator string(CacheKey cacheKey)
+    {
+        return cacheKey.ToString();
     }
 
     public override string ToString()
     {
-        return $"{CacheName}_{Key}";
+        return $"{CacheName}:{Key}";
     }
 }
