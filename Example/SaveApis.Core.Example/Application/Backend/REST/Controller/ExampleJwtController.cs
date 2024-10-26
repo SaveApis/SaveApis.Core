@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SaveApis.Core.Application.Builders.Interfaces;
 
-namespace SaveApis.Core.Example.Application.REST.Controller;
+namespace SaveApis.Core.Example.Application.Backend.REST.Controller;
 
 [ApiController]
 [Route("jwt")]
