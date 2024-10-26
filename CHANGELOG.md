@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.6.0"></a>
+## [1.6.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.6.0) (2024-10-26)
+
+### Features
+
+* Implement FluentResult ([#56](https://www.github.com/SaveApis/SaveApis.Core/issues/56)) ([7cb8aee](https://www.github.com/SaveApis/SaveApis.Core/commit/7cb8aee92f1498d6fbf58a674189be2f560ef85d))
+* **modules:** GraphQL Module ([#55](https://www.github.com/SaveApis/SaveApis.Core/issues/55)) ([03a7439](https://www.github.com/SaveApis/SaveApis.Core/commit/03a743961e01d51765aee9437ac6e4db8a283019))
+
 <a name="1.5.0"></a>
 ## [1.5.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.5.0) (2024-09-22)
 
