@@ -9,6 +9,11 @@ public record CacheName(string Value)
         return new CacheName(value);
     }
 
+    public static implicit operator string(CacheName cacheName)
+    {
+        return cacheName.ToString();
+    }
+
     public override string ToString()
     {
         return Value;
