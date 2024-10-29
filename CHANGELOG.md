@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.7.0"></a>
+## [1.7.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.7.0) (2024-10-29)
+
+### Features
+
+* **modules:** MongoDb Module ([#57](https://www.github.com/SaveApis/SaveApis.Core/issues/57)) ([248b068](https://www.github.com/SaveApis/SaveApis.Core/commit/248b068f836fca0beacb47ca78978a502a9127e6))
+
 <a name="1.6.0"></a>
 ## [1.6.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.6.0) (2024-10-26)
 
