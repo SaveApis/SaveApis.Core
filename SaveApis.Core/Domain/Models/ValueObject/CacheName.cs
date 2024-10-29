@@ -1,4 +1,4 @@
-﻿namespace SaveApis.Core.Application.Models.ValueObject;
+﻿namespace SaveApis.Core.Domain.Models.ValueObject;
 
 public record CacheName(string Value)
 {

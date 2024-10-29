@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MySqlConnector;
 using SaveApis.Core.Application.Extensions;
+using SaveApis.Core.Application.Jobs.MySql;
 using SaveApis.Core.Infrastructure.Persistence.MySql.Interfaces;
 
 namespace SaveApis.Core.Application.DI;
@@ -56,5 +57,7 @@ public class EfCoreModule(IConfiguration configuration) : Module
             .AsImplementedInterfaces()
             .As<DbContext>()
             .AsSelf();
+
+        builder.RegisterType<MigrateContextJob>().AsImplementedInterfaces();
     }
 }

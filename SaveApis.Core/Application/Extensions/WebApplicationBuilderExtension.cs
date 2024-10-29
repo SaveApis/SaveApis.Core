@@ -24,21 +24,20 @@ public static class WebApplicationBuilderExtension
         return builder;
     }
 
-    public static WebApplicationBuilder WithAutofac<TQuery, TMutation>(this WebApplicationBuilder builder, IConfiguration configuration,
-        Action<ContainerBuilder>? register = default) where TQuery : class where TMutation : class
+    public static WebApplicationBuilder WithAutofac<TQuery, TMutation>(this WebApplicationBuilder builder,
+        Action<ContainerBuilder, IConfiguration>? register = default) where TQuery : class where TMutation : class
     {
         builder.Configuration.AddEnvironmentVariables();
         builder.Host
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>((_, containerBuilder) =>
             {
-                register?.Invoke(containerBuilder);
-                containerBuilder.RegisterModule(new JwtModule(configuration));
-                containerBuilder.RegisterModule(new EfCoreModule(configuration));
-                containerBuilder.RegisterModule(new SerilogModule(configuration));
-                containerBuilder.RegisterModule(new HangfireModule(configuration));
+                register?.Invoke(containerBuilder, builder.Configuration);
+                containerBuilder.RegisterModule(new JwtModule(builder.Configuration));
+                containerBuilder.RegisterModule(new SerilogModule(builder.Configuration));
+                containerBuilder.RegisterModule(new HangfireModule(builder.Configuration));
                 containerBuilder.RegisterModule<MediatorModule>();
-                containerBuilder.RegisterModule(new EasyCachingModule(configuration));
+                containerBuilder.RegisterModule(new EasyCachingModule(builder.Configuration));
                 containerBuilder.RegisterModule<SwaggerModule>();
                 containerBuilder.RegisterModule<GraphQlModule<TQuery, TMutation>>();
 

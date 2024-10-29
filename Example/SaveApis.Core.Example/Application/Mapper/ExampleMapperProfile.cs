@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using SaveApis.Core.Example.Application.Models;
-using SaveApis.Core.Example.Application.Models.DTO;
+using SaveApis.Core.Example.Domains.Models;
+using SaveApis.Core.Example.Domains.Models.DTO;
 
 namespace SaveApis.Core.Example.Application.Mapper;
 

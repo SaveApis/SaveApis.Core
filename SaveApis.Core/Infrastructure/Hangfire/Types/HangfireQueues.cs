@@ -2,8 +2,8 @@
 
 public enum HangfireQueues
 {
-    Low,
-    Medium,
+    System,
     High,
-    System
+    Medium,
+    Low
 }
