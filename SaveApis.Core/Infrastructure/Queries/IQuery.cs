@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SaveApis.Core.Application.Models.ValueObject;
+using SaveApis.Core.Domain.Models.ValueObject;
 
 namespace SaveApis.Core.Infrastructure.Queries;
 

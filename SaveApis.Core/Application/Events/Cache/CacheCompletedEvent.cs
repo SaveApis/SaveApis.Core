@@ -1,4 +1,4 @@
-﻿using SaveApis.Core.Application.Models.ValueObject;
+﻿using SaveApis.Core.Domain.Models.ValueObject;
 using SaveApis.Core.Infrastructure.Events.Interfaces;
 
 namespace SaveApis.Core.Application.Events.Cache;

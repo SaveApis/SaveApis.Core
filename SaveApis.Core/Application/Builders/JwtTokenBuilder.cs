@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SaveApis.Core.Application.Builders.Interfaces;
-using SaveApis.Core.Infrastructure.Settings;
+using SaveApis.Core.Domain.Settings;
 
 namespace SaveApis.Core.Application.Builders;
 

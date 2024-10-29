@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SaveApis.Core.Example.Application.Models.Entity;
+using SaveApis.Core.Example.Domains.Models.Entity;
 using SaveApis.Core.Example.Persistence.MySQL.Interfaces;
 
 namespace SaveApis.Core.Example.Persistence.MySQL;

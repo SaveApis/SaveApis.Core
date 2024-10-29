@@ -1,4 +1,4 @@
-﻿namespace SaveApis.Core.Example.Application.Models.Entity;
+﻿namespace SaveApis.Core.Example.Domains.Models.Entity;
 
 public class TestEntity
 {

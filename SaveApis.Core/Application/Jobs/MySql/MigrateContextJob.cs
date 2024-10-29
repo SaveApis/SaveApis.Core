@@ -10,7 +10,7 @@ using Serilog.Events;
 namespace SaveApis.Core.Application.Jobs.MySql;
 
 [Queue("system")]
-public class MigrateContextJob(ILogger logger, IMediator mediator, IEnumerable<DbContext> registeredContexts) : BaseJob<ApplicationStartedEvent>(logger)
+public class MigrateContextJob(ILogger logger, IMediator mediator, IEnumerable<DbContext> registeredContexts) : BaseModuleSpecifiedJob<ApplicationStartedEvent>(logger)
 {
     [JobDisplayName("Migrate DbContext")]
     public override async Task RunAsync(ApplicationStartedEvent @event, CancellationToken cancellationToken = default)

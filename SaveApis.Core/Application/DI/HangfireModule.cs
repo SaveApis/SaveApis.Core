@@ -17,13 +17,13 @@ public class HangfireModule(IConfiguration configuration) : Module
     {
         var collection = new ServiceCollection();
 
-        collection.AddHangfire(configuration =>
+        collection.AddHangfire(config =>
         {
             var redisString = GenerateRedisConnectionString();
-            configuration.SetDataCompatibilityLevel(CompatibilityLevel.Version_180);
-            configuration.UseSimpleAssemblyNameTypeSerializer();
-            configuration.UseRecommendedSerializerSettings();
-            configuration.UseRedisStorage(redisString);
+            config.SetDataCompatibilityLevel(CompatibilityLevel.Version_180);
+            config.UseSimpleAssemblyNameTypeSerializer();
+            config.UseRecommendedSerializerSettings();
+            config.UseRedisStorage(redisString);
         });
 
         collection.AddHangfireServer(options =>
@@ -36,8 +36,14 @@ public class HangfireModule(IConfiguration configuration) : Module
             .As<IDashboardAuthorizationFilter>();
 
         builder.RegisterAssemblyTypes(WebApplicationBuilderExtension.Assemblies)
-            .Where(t => t.GetInterfaces()
-                .Any(it => it.IsGenericType && it.GetGenericTypeDefinition() == typeof(IJob<>)))
+            .Where(t =>
+            {
+                var interfaces = t.GetInterfaces();
+                var isJob = interfaces.Any(it => it.IsGenericType && it.GetGenericTypeDefinition() == typeof(IJob<>));
+                var isModuleJob = interfaces.Any(it => it.IsGenericType && it.GetGenericTypeDefinition() == typeof(IModuleSpecifiedJob<>));
+
+                return isJob && !isModuleJob;
+            })
             .AsImplementedInterfaces();
     }
 

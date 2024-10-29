@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using SaveApis.Core.Example.Application.Models;
+using SaveApis.Core.Example.Domains.Models;
 
 namespace SaveApis.Core.Example.Application.Validator;
 

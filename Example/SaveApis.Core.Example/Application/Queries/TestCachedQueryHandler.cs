@@ -1,5 +1,5 @@
 ﻿using FluentResults;
-using SaveApis.Core.Example.Application.Models;
+using SaveApis.Core.Example.Domains.Models;
 using SaveApis.Core.Infrastructure.Queries;
 
 namespace SaveApis.Core.Example.Application.Queries;

@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.WithAssemblies(Assembly.GetExecutingAssembly())
-    .WithAutofac<ExampleQuery, ExampleMutation>(builder.Configuration,
-        containerBuilder => containerBuilder.WithSignalR());
+    .WithAutofac<ExampleQuery, ExampleMutation>((containerBuilder, configuration) =>
+        containerBuilder.WithSignalR().WithMongo(configuration).WithEfCore(configuration));
 
 builder.Services.AddControllers();
 
