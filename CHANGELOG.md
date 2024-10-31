@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.7.1"></a>
+## [1.7.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.7.1) (2024-10-31)
+
 <a name="1.7.0"></a>
 ## [1.7.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.7.0) (2024-10-29)
 
