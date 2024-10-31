@@ -4,26 +4,26 @@ using Microsoft.Extensions.Options;
 using SaveApis.Core.Application.Extensions;
 using SaveApis.Core.Application.Jobs.Mongo;
 using SaveApis.Core.Domain.Settings;
+using SaveApis.Core.Infrastructure.DI;
 using SaveApis.Core.Infrastructure.Persistence.Mongo.Interfaces;
 using SaveApis.Core.Persistence.Mongo;
 
 namespace SaveApis.Core.Application.DI;
 
-public class MongoModule(IConfiguration configuration) : Module
+public class MongoModule(IConfiguration configuration) : BaseModule(configuration)
 {
-    protected override void Load(ContainerBuilder builder)
+    protected override void Register(ContainerBuilder builder)
     {
-        _ = bool.TryParse(configuration["MONGO_SRV"], out var srv)
+        _ = bool.TryParse(Configuration["MONGO_SRV"], out var srv)
             ? srv
             : throw new ArgumentException("MONGO_SRV");
-        var host = configuration["MONGO_HOST"] ?? throw new ArgumentException("MONGO_HOST");
-        var port = uint.TryParse(configuration["MONGO_PORT"], out var p) ? p : 27017;
-        var database = configuration["MONGO_DATABASE"] ?? throw new ArgumentException("MONGO_DATABASE");
-        var user = configuration["MONGO_USER"] ?? throw new ArgumentException("MONGO_USER");
-        var password = configuration["MONGO_PASSWORD"] ?? throw new ArgumentException("MONGO_PASSWORD");
-        var authSource = configuration["MONGO_AUTH_SOURCE"] ?? "admin";
+        var host = Configuration["MONGO_HOST"] ?? throw new ArgumentException("MONGO_HOST");
+        var port = uint.TryParse(Configuration["MONGO_PORT"], out var p) ? p : 27017;
+        var user = Configuration["MONGO_USER"] ?? throw new ArgumentException("MONGO_USER");
+        var password = Configuration["MONGO_PASSWORD"] ?? throw new ArgumentException("MONGO_PASSWORD");
+        var authSource = Configuration["MONGO_AUTH_SOURCE"] ?? "admin";
 
-        var mongoSettings = new MongoSettings(srv, host, port, database, user, password, authSource);
+        var mongoSettings = new MongoSettings(srv, host, port, user, password, authSource);
 
         builder.RegisterType<MongoClientFactory>().As<IMongoClientFactory>();
         builder.RegisterType<MongoDatabaseFactory>().As<IMongoDatabaseFactory>();

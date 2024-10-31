@@ -2,20 +2,21 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SaveApis.Core.Infrastructure.DI;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 
 namespace SaveApis.Core.Application.DI;
 
-public class SerilogModule(IConfiguration configuration) : Module
+public class SerilogModule(IConfiguration configuration) : BaseModule(configuration)
 {
-    protected override void Load(ContainerBuilder builder)
+    protected override void Register(ContainerBuilder builder)
     {
         var collection = new ServiceCollection();
         collection.AddSerilog(config =>
         {
-            var logLevel = configuration["SAVEAPIS_LOG_LEVEL"] ?? "Information";
+            var logLevel = Configuration["SAVEAPIS_LOG_LEVEL"] ?? "Information";
             config = Enum.Parse<LogEventLevel>(logLevel) switch
             {
                 LogEventLevel.Debug => config.MinimumLevel.Debug(),

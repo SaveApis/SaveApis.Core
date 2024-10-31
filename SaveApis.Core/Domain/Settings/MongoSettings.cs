@@ -4,7 +4,6 @@ public record MongoSettings(
     bool Srv,
     string Host,
     uint Port,
-    string Database,
     string UserName,
     string Password,
     string AuthSource)
@@ -17,7 +16,7 @@ public record MongoSettings(
     public override string ToString()
     {
         return Srv
-            ? $"mongodb+srv://{UserName}:{Password}@{Host}/{Database}?retryWrites=false&authSource={AuthSource}"
-            : $"mongodb://{UserName}:{Password}@{Host}:{Port}/{Database}?retryWrites=false&authSource={AuthSource}";
+            ? $"mongodb+srv://{UserName}:{Password}@{Host}/?retryWrites=false&authSource={AuthSource}"
+            : $"mongodb://{UserName}:{Password}@{Host}:{Port}/?retryWrites=false&authSource={AuthSource}";
     }
 }

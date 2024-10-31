@@ -9,23 +9,24 @@ using Microsoft.IdentityModel.Tokens;
 using SaveApis.Core.Application.Builders;
 using SaveApis.Core.Application.Builders.Interfaces;
 using SaveApis.Core.Domain.Settings;
+using SaveApis.Core.Infrastructure.DI;
 
 namespace SaveApis.Core.Application.DI;
 
-public class JwtModule(IConfiguration configuration) : Module
+public class JwtModule(IConfiguration configuration) : BaseModule(configuration)
 {
-    protected override void Load(ContainerBuilder builder)
+    protected override void Register(ContainerBuilder builder)
     {
         var collection = new ServiceCollection();
 
-        var issuer = configuration["JWT_ISSUER"]
+        var issuer = Configuration["JWT_ISSUER"]
 #if !DEBUG
                      ?? "debug"
 #else
                      ?? throw new ArgumentException("JWT_ISSUER")
 #endif
             ;
-        var audience = configuration["JWT_AUDIENCE"]
+        var audience = Configuration["JWT_AUDIENCE"]
 #if !DEBUG
                        ?? "debug"
 #else
@@ -33,7 +34,7 @@ public class JwtModule(IConfiguration configuration) : Module
 #endif
             ;
 
-        var key = configuration["JWT_KEY"]
+        var key = Configuration["JWT_KEY"]
 #if !DEBUG
                   ?? "yourRandomWith64OrMoreLengthKeyWhichShouldBeStoredSafetyAndShouldNotBeSharedWithOtherPeople"
 #else
@@ -41,7 +42,7 @@ public class JwtModule(IConfiguration configuration) : Module
 #endif
             ;
         var expirationInHours =
-                uint.TryParse(configuration["JWT_EXPIRATION_IN_HOURS"], out var hours)
+                uint.TryParse(Configuration["JWT_EXPIRATION_IN_HOURS"], out var hours)
                     ? hours
 #if !DEBUG
                     : 8

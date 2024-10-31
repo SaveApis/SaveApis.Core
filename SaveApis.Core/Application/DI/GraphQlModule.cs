@@ -1,12 +1,15 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SaveApis.Core.Infrastructure.DI;
 
 namespace SaveApis.Core.Application.DI;
 
-public class GraphQlModule<TQuery, TMutation> : Module where TQuery : class where TMutation : class
+public class GraphQlModule<TQuery, TMutation>(IConfiguration configuration) : BaseModule(configuration) where TQuery : class where TMutation : class
 {
-    protected override void Load(ContainerBuilder builder)
+    protected override void Register(ContainerBuilder builder)
     {
         var collection = new ServiceCollection();
 
@@ -18,5 +21,10 @@ public class GraphQlModule<TQuery, TMutation> : Module where TQuery : class wher
             .AddMutationType<TMutation>();
 
         builder.Populate(collection);
+    }
+
+    protected override void PostAction(WebApplication application)
+    {
+        application.MapGraphQL();
     }
 }

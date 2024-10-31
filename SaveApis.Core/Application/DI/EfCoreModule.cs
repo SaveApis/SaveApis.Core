@@ -6,21 +6,22 @@ using Microsoft.Extensions.DependencyInjection;
 using MySqlConnector;
 using SaveApis.Core.Application.Extensions;
 using SaveApis.Core.Application.Jobs.MySql;
+using SaveApis.Core.Infrastructure.DI;
 using SaveApis.Core.Infrastructure.Persistence.MySql.Interfaces;
 
 namespace SaveApis.Core.Application.DI;
 
-public class EfCoreModule(IConfiguration configuration) : Module
+public class EfCoreModule(IConfiguration configuration) : BaseModule(configuration)
 {
-    protected override void Load(ContainerBuilder builder)
+    protected override void Register(ContainerBuilder builder)
     {
         var connectionStringBuilder = new MySqlConnectionStringBuilder
         {
-            Server = configuration["MYSQL_HOST"] ?? throw new ArgumentException("MYSQL_HOST"),
-            Port = uint.Parse(configuration["MYSQL_PORT"] ?? throw new ArgumentException("MYSQL_PORT")),
-            Database = configuration["MYSQL_DATABASE"] ?? throw new ArgumentException("MYSQL_DATABASE"),
-            UserID = configuration["MYSQL_USER"] ?? throw new ArgumentException("MYSQL_USER"),
-            Password = configuration["MYSQL_PASSWORD"] ?? throw new ArgumentException("MYSQL_PASSWORD"),
+            Server = Configuration["MYSQL_HOST"] ?? throw new ArgumentException("MYSQL_HOST"),
+            Port = uint.Parse(Configuration["MYSQL_PORT"] ?? throw new ArgumentException("MYSQL_PORT")),
+            Database = Configuration["MYSQL_DATABASE"] ?? throw new ArgumentException("MYSQL_DATABASE"),
+            UserID = Configuration["MYSQL_USER"] ?? throw new ArgumentException("MYSQL_USER"),
+            Password = Configuration["MYSQL_PASSWORD"] ?? throw new ArgumentException("MYSQL_PASSWORD"),
             BrowsableConnectionString = false,
         };
 

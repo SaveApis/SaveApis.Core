@@ -7,11 +7,6 @@ on:
       - '.github/workflows/ci.yml'
     branches-ignore:
       - main
-  pull_request:
-    paths:
-      - 'SaveApis.Core/**'
-      - 'Tests/**'
-      - '.github/workflows/ci.yml'
   workflow_dispatch:
 
 jobs:
