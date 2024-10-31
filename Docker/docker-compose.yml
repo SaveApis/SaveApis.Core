@@ -34,13 +34,6 @@
       - JWT_KEY=yourRandomWith64OrMoreLengthKeyWhichShouldBeStoredSafetyAndShouldNotBeSharedWithOtherPeople
       - JWT_EXPIRATION_IN_HOURS=8
       
-      # Entity Framework Core Configuration (#42)
-      - MYSQL_HOST=mysql
-      - MYSQL_PORT=3306
-      - MYSQL_DATABASE=example
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=example
-      
       # EasyCaching Configuration (#40)
       - EASYCACHING_REDIS_HOST=redis
       - EASYCACHING_REDIS_PORT=6379
@@ -50,7 +43,6 @@
       - MONGO_SRV=false
       - MONGO_HOST=mongo
       - MONGO_PORT=27017
-      - MONGO_DATABASE=example
       - MONGO_USER=example
       - MONGO_PASSWORD=example
     ports:

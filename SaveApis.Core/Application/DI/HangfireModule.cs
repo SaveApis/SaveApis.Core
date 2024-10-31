@@ -3,17 +3,20 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Hangfire;
 using Hangfire.Dashboard;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using SaveApis.Core.Application.Extensions;
+using SaveApis.Core.Infrastructure.DI;
 using SaveApis.Core.Infrastructure.Hangfire.Types;
 using SaveApis.Core.Infrastructure.Jobs.Interfaces;
 
 namespace SaveApis.Core.Application.DI;
 
-public class HangfireModule(IConfiguration configuration) : Module
+public class HangfireModule(IConfiguration configuration) : BaseModule(configuration)
 {
-    protected override void Load(ContainerBuilder builder)
+    protected override void Register(ContainerBuilder builder)
     {
         var collection = new ServiceCollection();
 
@@ -47,15 +50,26 @@ public class HangfireModule(IConfiguration configuration) : Module
             .AsImplementedInterfaces();
     }
 
+    protected override void PostAction(WebApplication application)
+    {
+        var dashboardAuthorizationFilters = application.Services.CreateScope().ServiceProvider
+            .GetServices<IDashboardAuthorizationFilter>().ToArray();
+        var options = new DashboardOptions
+        {
+            Authorization = application.Environment.IsDevelopment() ? [] : dashboardAuthorizationFilters
+        };
+        application.UseHangfireDashboard("/hangfire", options);
+    }
+
     private string GenerateRedisConnectionString()
     {
-        var name = configuration["HANGFIRE_REDIS_NAME"] ?? throw new ArgumentException("HANGFIRE_REDIS_NAME");
-        var host = configuration["HANGFIRE_REDIS_HOST"] ?? throw new ArgumentException("HANGFIRE_REDIS_HOST");
-        var port = configuration["HANGFIRE_REDIS_PORT"] ?? throw new ArgumentException("HANGFIRE_REDIS_PORT");
-        var database = configuration["HANGFIRE_REDIS_DATABASE"] ?? throw new ArgumentException("HANGFIRE_REDIS_DATABASE");
-        var username = configuration["HANGFIRE_REDIS_USERNAME"] ?? string.Empty;
-        var password = configuration["HANGFIRE_REDIS_PASSWORD"] ?? string.Empty;
-        var ssl = configuration["HANGFIRE_REDIS_SSL"] ?? "false";
+        var name = Configuration["HANGFIRE_REDIS_NAME"] ?? throw new ArgumentException("HANGFIRE_REDIS_NAME");
+        var host = Configuration["HANGFIRE_REDIS_HOST"] ?? throw new ArgumentException("HANGFIRE_REDIS_HOST");
+        var port = Configuration["HANGFIRE_REDIS_PORT"] ?? throw new ArgumentException("HANGFIRE_REDIS_PORT");
+        var database = Configuration["HANGFIRE_REDIS_DATABASE"] ?? throw new ArgumentException("HANGFIRE_REDIS_DATABASE");
+        var username = Configuration["HANGFIRE_REDIS_USERNAME"] ?? string.Empty;
+        var password = Configuration["HANGFIRE_REDIS_PASSWORD"] ?? string.Empty;
+        var ssl = Configuration["HANGFIRE_REDIS_SSL"] ?? "false";
 
         var stringBuilder = new StringBuilder();
         stringBuilder.Append(host).Append(':').Append(port).Append(',')

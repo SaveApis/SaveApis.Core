@@ -2,8 +2,13 @@
 
 public class ExampleMutation
 {
-    public string CreateExample(string example)
+    public string CreateExample()
     {
-        return example;
+        return "Example";
+    }
+
+    public string UpdateExample(int id)
+    {
+        return $"Example {id}";
     }
 }

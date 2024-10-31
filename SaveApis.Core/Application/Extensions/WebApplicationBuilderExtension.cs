@@ -11,6 +11,7 @@ namespace SaveApis.Core.Application.Extensions;
 public static class WebApplicationBuilderExtension
 {
     private static readonly Collection<Assembly> AssemblyStorage = [Assembly.GetExecutingAssembly()];
+    public static readonly Collection<Action<WebApplication>> PostActions = [];
     internal static Assembly[] Assemblies => AssemblyStorage.Distinct().ToArray();
 
 
@@ -24,8 +25,8 @@ public static class WebApplicationBuilderExtension
         return builder;
     }
 
-    public static WebApplicationBuilder WithAutofac<TQuery, TMutation>(this WebApplicationBuilder builder,
-        Action<ContainerBuilder, IConfiguration>? register = default) where TQuery : class where TMutation : class
+    public static WebApplicationBuilder WithAutofac(this WebApplicationBuilder builder,
+        Action<ContainerBuilder, IConfiguration>? register = default)
     {
         builder.Configuration.AddEnvironmentVariables();
         builder.Host
@@ -33,13 +34,11 @@ public static class WebApplicationBuilderExtension
             .ConfigureContainer<ContainerBuilder>((_, containerBuilder) =>
             {
                 register?.Invoke(containerBuilder, builder.Configuration);
-                containerBuilder.RegisterModule(new JwtModule(builder.Configuration));
                 containerBuilder.RegisterModule(new SerilogModule(builder.Configuration));
+                containerBuilder.RegisterModule(new MediatorModule(builder.Configuration));
                 containerBuilder.RegisterModule(new HangfireModule(builder.Configuration));
-                containerBuilder.RegisterModule<MediatorModule>();
+                containerBuilder.RegisterModule(new JwtModule(builder.Configuration));
                 containerBuilder.RegisterModule(new EasyCachingModule(builder.Configuration));
-                containerBuilder.RegisterModule<SwaggerModule>();
-                containerBuilder.RegisterModule<GraphQlModule<TQuery, TMutation>>();
 
                 var assemblies = Assemblies.Where(it => it != Assembly.GetExecutingAssembly()).ToArray();
                 containerBuilder.RegisterAssemblyModules(assemblies);
