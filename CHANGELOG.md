@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.8.0"></a>
+## [1.8.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.8.0) (2024-11-02)
+
+### Features
+
+* **modules:** Enable EfCore Module & Fix migration ([#59](https://www.github.com/SaveApis/SaveApis.Core/issues/59)) ([ebe4f2d](https://www.github.com/SaveApis/SaveApis.Core/commit/ebe4f2dae4a560c95a8ffbe82839e41189b39418))
+
 <a name="1.7.1"></a>
 ## [1.7.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.7.1) (2024-10-31)
 
