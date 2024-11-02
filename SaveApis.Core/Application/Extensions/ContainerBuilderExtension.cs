@@ -24,13 +24,11 @@ public static class ContainerBuilderExtension
         return builder;
     }
 
-    /*
     public static ContainerBuilder WithEfCore(this ContainerBuilder builder, IConfiguration configuration)
     {
         builder.RegisterModule(new EfCoreModule(configuration));
         return builder;
     }
-    */
 
     public static ContainerBuilder WithMongo(this ContainerBuilder builder, IConfiguration configuration)
     {

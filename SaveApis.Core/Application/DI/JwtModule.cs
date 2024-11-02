@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using PasswordGenerator;
 using SaveApis.Core.Application.Builders;
 using SaveApis.Core.Application.Builders.Interfaces;
 using SaveApis.Core.Domain.Settings;
@@ -23,14 +24,14 @@ public class JwtModule(IConfiguration configuration) : BaseModule(configuration)
 #if !DEBUG
                      ?? "debug"
 #else
-                     ?? throw new ArgumentException("JWT_ISSUER")
+                     ?? "http://localhost"
 #endif
             ;
         var audience = Configuration["JWT_AUDIENCE"]
 #if !DEBUG
                        ?? "debug"
 #else
-                       ?? throw new ArgumentException("JWT_AUDIENCE")
+                       ?? "http://localhost"
 #endif
             ;
 
@@ -38,7 +39,7 @@ public class JwtModule(IConfiguration configuration) : BaseModule(configuration)
 #if !DEBUG
                   ?? "yourRandomWith64OrMoreLengthKeyWhichShouldBeStoredSafetyAndShouldNotBeSharedWithOtherPeople"
 #else
-                  ?? throw new ArgumentException("JWT_KEY")
+                  ?? new Password(true, true, true, true, 64).Next();
 #endif
             ;
         var expirationInHours =

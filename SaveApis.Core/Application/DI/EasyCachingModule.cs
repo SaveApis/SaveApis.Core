@@ -21,13 +21,13 @@ public class EasyCachingModule(IConfiguration configuration) : BaseModule(config
         collection.AddEasyCaching(options =>
         {
             var host = Configuration["EASYCACHING_REDIS_HOST"] ??
-                       throw new ArgumentException("EASYCACHING_REDIS_HOST");
+                       "localhost";
             var port = Configuration["EASYCACHING_REDIS_PORT"] ??
-                       throw new ArgumentException("EASYCACHING_REDIS_PORT");
+                       "6379";
             var redisDatabase = Configuration["EASYCACHING_REDIS_DATABASE"] ??
-                                throw new ArgumentException("EASYCACHING_REDIS_DATABASE");
+                                "1";
             var busDatabase = Configuration["EASYCACHING_REDIS_BUS_DATABASE"] ??
-                              throw new ArgumentException("EASYCACHING_REDIS_BUS_DATABASE");
+                              "2";
 
             var endpoint = new ServerEndPoint(host, int.TryParse(port, out var p)
                 ? p

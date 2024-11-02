@@ -14,13 +14,11 @@ public class MongoModule(IConfiguration configuration) : BaseModule(configuratio
 {
     protected override void Register(ContainerBuilder builder)
     {
-        _ = bool.TryParse(Configuration["MONGO_SRV"], out var srv)
-            ? srv
-            : throw new ArgumentException("MONGO_SRV");
-        var host = Configuration["MONGO_HOST"] ?? throw new ArgumentException("MONGO_HOST");
+        _ = bool.TryParse(Configuration["MONGO_SRV"], out var srv) && srv;
+        var host = Configuration["MONGO_HOST"] ?? "localhost";
         var port = uint.TryParse(Configuration["MONGO_PORT"], out var p) ? p : 27017;
-        var user = Configuration["MONGO_USER"] ?? throw new ArgumentException("MONGO_USER");
-        var password = Configuration["MONGO_PASSWORD"] ?? throw new ArgumentException("MONGO_PASSWORD");
+        var user = Configuration["MONGO_USER"] ?? "saveapis";
+        var password = Configuration["MONGO_PASSWORD"] ?? "saveapis";
         var authSource = Configuration["MONGO_AUTH_SOURCE"] ?? "admin";
 
         var mongoSettings = new MongoSettings(srv, host, port, user, password, authSource);
