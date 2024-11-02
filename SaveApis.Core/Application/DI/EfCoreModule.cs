@@ -17,11 +17,11 @@ public class EfCoreModule(IConfiguration configuration) : BaseModule(configurati
     {
         var connectionStringBuilder = new MySqlConnectionStringBuilder
         {
-            Server = Configuration["MYSQL_HOST"] ?? throw new ArgumentException("MYSQL_HOST"),
-            Port = uint.Parse(Configuration["MYSQL_PORT"] ?? throw new ArgumentException("MYSQL_PORT")),
-            Database = Configuration["MYSQL_DATABASE"] ?? throw new ArgumentException("MYSQL_DATABASE"),
-            UserID = Configuration["MYSQL_USER"] ?? throw new ArgumentException("MYSQL_USER"),
-            Password = Configuration["MYSQL_PASSWORD"] ?? throw new ArgumentException("MYSQL_PASSWORD"),
+            Server = Configuration["MYSQL_HOST"] ?? "localhost",
+            Port = uint.Parse(Configuration["MYSQL_PORT"] ?? "3306"),
+            Database = Configuration["MYSQL_DATABASE"] ?? "SaveApis",
+            UserID = Configuration["MYSQL_USER"] ?? "saveapis",
+            Password = Configuration["MYSQL_PASSWORD"] ?? "saveapis",
             BrowsableConnectionString = false,
         };
 

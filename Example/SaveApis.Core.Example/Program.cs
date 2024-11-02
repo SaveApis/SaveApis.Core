@@ -7,9 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.WithAssemblies(Assembly.GetExecutingAssembly())
     .WithAutofac((containerBuilder, configuration) => containerBuilder.WithMongo(configuration)
-        .WithSwagger(configuration).WithGraphQl<ExampleQuery, ExampleMutation>(configuration)
-        .WithAutoMapper(configuration).WithFluentValidator(configuration)
-        .WithSignalR(configuration));
+        .WithEfCore(configuration).WithSwagger(configuration).WithGraphQl<ExampleQuery, ExampleMutation>(configuration)
+        .WithAutoMapper(configuration).WithFluentValidator(configuration).WithSignalR(configuration));
 
 builder.Services.AddControllers();
 

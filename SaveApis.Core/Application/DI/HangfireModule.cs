@@ -63,10 +63,10 @@ public class HangfireModule(IConfiguration configuration) : BaseModule(configura
 
     private string GenerateRedisConnectionString()
     {
-        var name = Configuration["HANGFIRE_REDIS_NAME"] ?? throw new ArgumentException("HANGFIRE_REDIS_NAME");
-        var host = Configuration["HANGFIRE_REDIS_HOST"] ?? throw new ArgumentException("HANGFIRE_REDIS_HOST");
-        var port = Configuration["HANGFIRE_REDIS_PORT"] ?? throw new ArgumentException("HANGFIRE_REDIS_PORT");
-        var database = Configuration["HANGFIRE_REDIS_DATABASE"] ?? throw new ArgumentException("HANGFIRE_REDIS_DATABASE");
+        var name = Configuration["HANGFIRE_REDIS_NAME"] ?? "SaveApis";
+        var host = Configuration["HANGFIRE_REDIS_HOST"] ?? "localhost";
+        var port = Configuration["HANGFIRE_REDIS_PORT"] ?? "6379";
+        var database = Configuration["HANGFIRE_REDIS_DATABASE"] ?? "0";
         var username = Configuration["HANGFIRE_REDIS_USERNAME"] ?? string.Empty;
         var password = Configuration["HANGFIRE_REDIS_PASSWORD"] ?? string.Empty;
         var ssl = Configuration["HANGFIRE_REDIS_SSL"] ?? "false";
