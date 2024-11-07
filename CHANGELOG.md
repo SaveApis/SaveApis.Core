@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.9.0"></a>
+## [1.9.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.9.0) (2024-11-07)
+
+### Features
+
+* **modules:** Switch Assembly registration to ContainerBuilder ([#60](https://www.github.com/SaveApis/SaveApis.Core/issues/60)) ([98b5691](https://www.github.com/SaveApis/SaveApis.Core/commit/98b569107355b0339e31cfb300684eee95a122b3))
+
 <a name="1.8.0"></a>
 ## [1.8.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.8.0) (2024-11-02)
 
