@@ -34,11 +34,11 @@ public class HangfireModule(IConfiguration configuration) : BaseModule(configura
 
         builder.Populate(collection);
 
-        builder.RegisterAssemblyTypes(WebApplicationBuilderExtension.Assemblies)
+        builder.RegisterAssemblyTypes(ContainerBuilderExtension.Assemblies)
             .Where(t => t.IsAssignableTo(typeof(IDashboardAuthorizationFilter)))
             .As<IDashboardAuthorizationFilter>();
 
-        builder.RegisterAssemblyTypes(WebApplicationBuilderExtension.Assemblies)
+        builder.RegisterAssemblyTypes(ContainerBuilderExtension.Assemblies)
             .Where(t =>
             {
                 var interfaces = t.GetInterfaces();

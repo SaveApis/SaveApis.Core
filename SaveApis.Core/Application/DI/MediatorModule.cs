@@ -17,13 +17,13 @@ public class MediatorModule(IConfiguration configuration) : BaseModule(configura
 
         collection.AddMediatR(configuration =>
         {
-            configuration.RegisterServicesFromAssemblies(WebApplicationBuilderExtension.Assemblies);
+            configuration.RegisterServicesFromAssemblies(ContainerBuilderExtension.Assemblies);
             configuration.AddOpenBehavior(typeof(CachedQueryPipeline<,>));
         });
 
         builder.Populate(collection);
 
-        builder.RegisterAssemblyTypes(WebApplicationBuilderExtension.Assemblies)
+        builder.RegisterAssemblyTypes(ContainerBuilderExtension.Assemblies)
             .Where(t => t.GetInterfaces().Any(i => i.IsAssignableTo(typeof(IEvent)))).AsImplementedInterfaces();
     }
 }

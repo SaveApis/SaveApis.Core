@@ -25,7 +25,7 @@ public class EfCoreModule(IConfiguration configuration) : BaseModule(configurati
             BrowsableConnectionString = false,
         };
 
-        var assemblies = WebApplicationBuilderExtension.Assemblies;
+        var assemblies = ContainerBuilderExtension.Assemblies;
 
         var collection = new ServiceCollection();
 

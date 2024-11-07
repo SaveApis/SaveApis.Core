@@ -10,6 +10,6 @@ public class AutoMapperModule(IConfiguration configuration) : BaseModule(configu
 {
     protected override void Register(ContainerBuilder builder)
     {
-        builder.RegisterAutoMapper(false, WebApplicationBuilderExtension.Assemblies);
+        builder.RegisterAutoMapper(false, ContainerBuilderExtension.Assemblies);
     }
 }
