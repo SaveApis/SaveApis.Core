@@ -10,20 +10,7 @@ namespace SaveApis.Core.Application.Extensions;
 
 public static class WebApplicationBuilderExtension
 {
-    private static readonly Collection<Assembly> AssemblyStorage = [Assembly.GetExecutingAssembly()];
     public static readonly Collection<Action<WebApplication>> PostActions = [];
-    internal static Assembly[] Assemblies => AssemblyStorage.Distinct().ToArray();
-
-
-    public static WebApplicationBuilder WithAssemblies(this WebApplicationBuilder builder, params Assembly[] assemblies)
-    {
-        foreach (var assembly in assemblies)
-        {
-            AssemblyStorage.Add(assembly);
-        }
-
-        return builder;
-    }
 
     public static WebApplicationBuilder WithAutofac(this WebApplicationBuilder builder,
         Action<ContainerBuilder, IConfiguration>? register = default)
@@ -40,7 +27,7 @@ public static class WebApplicationBuilderExtension
                 containerBuilder.RegisterModule(new JwtModule(builder.Configuration));
                 containerBuilder.RegisterModule(new EasyCachingModule(builder.Configuration));
 
-                var assemblies = Assemblies.Where(it => it != Assembly.GetExecutingAssembly()).ToArray();
+                var assemblies = ContainerBuilderExtension.Assemblies.Where(it => it != Assembly.GetExecutingAssembly()).ToArray();
                 containerBuilder.RegisterAssemblyModules(assemblies);
             });
 

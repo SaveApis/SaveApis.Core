@@ -29,7 +29,7 @@ public class MongoModule(IConfiguration configuration) : BaseModule(configuratio
 
         builder.RegisterInstance(Options.Create(mongoSettings)).As<IOptions<MongoSettings>>();
 
-        builder.RegisterAssemblyTypes(WebApplicationBuilderExtension.Assemblies)
+        builder.RegisterAssemblyTypes(ContainerBuilderExtension.Assemblies)
             .Where(type => type.IsAssignableTo<IMongoIndex>())
             .AsImplementedInterfaces();
 

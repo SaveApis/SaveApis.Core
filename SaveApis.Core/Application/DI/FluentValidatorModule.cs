@@ -14,7 +14,7 @@ public class FluentValidatorModule(IConfiguration configuration) : BaseModule(co
     {
         var collection = new ServiceCollection();
 
-        collection.AddValidatorsFromAssemblies(WebApplicationBuilderExtension.Assemblies);
+        collection.AddValidatorsFromAssemblies(ContainerBuilderExtension.Assemblies);
 
         builder.Populate(collection);
     }
