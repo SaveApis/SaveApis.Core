@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.10.0"></a>
+## [1.10.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.10.0) (2024-11-08)
+
+### Features
+
+* **modules:** Register hangfire jobs as self ([#61](https://www.github.com/SaveApis/SaveApis.Core/issues/61)) ([5c955bb](https://www.github.com/SaveApis/SaveApis.Core/commit/5c955bb053a1b79adce982759b9e66210f7bb7e1))
+
 <a name="1.9.0"></a>
 ## [1.9.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.9.0) (2024-11-07)
 
