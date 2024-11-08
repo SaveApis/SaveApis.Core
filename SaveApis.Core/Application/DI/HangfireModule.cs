@@ -47,7 +47,8 @@ public class HangfireModule(IConfiguration configuration) : BaseModule(configura
 
                 return isJob && !isModuleJob;
             })
-            .AsImplementedInterfaces();
+            .AsImplementedInterfaces()
+            .AsSelf();
     }
 
     protected override void PostAction(WebApplication application)
