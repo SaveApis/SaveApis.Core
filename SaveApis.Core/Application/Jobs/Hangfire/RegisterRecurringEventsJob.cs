@@ -9,7 +9,11 @@ using Serilog.Events;
 namespace SaveApis.Core.Application.Jobs.Hangfire;
 
 [Queue("system")]
-public class RegisterRecurringEventsJob(ILogger logger, IRecurringJobManager manager, IMediator mediator, IEnumerable<IRecurringEvent> events) : BaseJob<ApplicationStartedEvent>(logger)
+public class RegisterRecurringEventsJob(
+    ILogger logger,
+    IRecurringJobManager manager,
+    IMediator mediator,
+    IEnumerable<IRecurringEvent> events) : BaseJob<ApplicationStartedEvent>(logger)
 {
     [JobDisplayName("Register or update recurring events")]
     public override Task RunAsync(ApplicationStartedEvent @event, CancellationToken cancellationToken = default)
@@ -19,6 +23,7 @@ public class RegisterRecurringEventsJob(ILogger logger, IRecurringJobManager man
             Log(LogEventLevel.Information, "Register {Name}", null, jobEvent.GetType().Name);
             manager.AddOrUpdate(jobEvent.Id, () => Publish(jobEvent, cancellationToken), jobEvent.CronExpression);
         }
+
         return Task.CompletedTask;
     }
 

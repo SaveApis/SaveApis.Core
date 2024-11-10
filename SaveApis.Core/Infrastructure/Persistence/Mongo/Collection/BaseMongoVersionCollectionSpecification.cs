@@ -2,4 +2,5 @@
 
 namespace SaveApis.Core.Infrastructure.Persistence.Mongo.Collection;
 
-public abstract class BaseMongoVersionCollectionSpecification<TModel> : BaseMongoCollectionSpecification<MongoVersionObject<TModel>>;
+public abstract class
+    BaseMongoVersionCollectionSpecification<TModel> : BaseMongoCollectionSpecification<MongoVersionObject<TModel>>;

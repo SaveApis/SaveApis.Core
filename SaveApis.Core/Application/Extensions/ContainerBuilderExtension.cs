@@ -10,12 +10,10 @@ public static class ContainerBuilderExtension
 {
     private static readonly Collection<Assembly> AssemblyStorage = [Assembly.GetExecutingAssembly()];
     internal static Assembly[] Assemblies => AssemblyStorage.Distinct().ToArray();
+
     public static ContainerBuilder WithAssemblies(this ContainerBuilder builder, params Assembly[] assemblies)
     {
-        foreach (var assembly in assemblies)
-        {
-            AssemblyStorage.Add(assembly);
-        }
+        foreach (var assembly in assemblies) AssemblyStorage.Add(assembly);
 
         return builder;
     }

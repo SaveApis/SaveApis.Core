@@ -6,7 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+#if !DEBUG
 using PasswordGenerator;
+#endif
 using SaveApis.Core.Application.Builders;
 using SaveApis.Core.Application.Builders.Interfaces;
 using SaveApis.Core.Domain.Settings;
@@ -21,14 +23,14 @@ public class JwtModule(IConfiguration configuration) : BaseModule(configuration)
         var collection = new ServiceCollection();
 
         var issuer = Configuration["JWT_ISSUER"]
-#if !DEBUG
+#if DEBUG
                      ?? "debug"
 #else
                      ?? "http://localhost"
 #endif
             ;
         var audience = Configuration["JWT_AUDIENCE"]
-#if !DEBUG
+#if DEBUG
                        ?? "debug"
 #else
                        ?? "http://localhost"
@@ -36,19 +38,19 @@ public class JwtModule(IConfiguration configuration) : BaseModule(configuration)
             ;
 
         var key = Configuration["JWT_KEY"]
-#if !DEBUG
+#if DEBUG
                   ?? "yourRandomWith64OrMoreLengthKeyWhichShouldBeStoredSafetyAndShouldNotBeSharedWithOtherPeople"
 #else
-                  ?? new Password(true, true, true, true, 64).Next();
+                  ?? new Password(true, true, true, true, 64).Next()
 #endif
             ;
         var expirationInHours =
                 uint.TryParse(Configuration["JWT_EXPIRATION_IN_HOURS"], out var hours)
                     ? hours
-#if !DEBUG
+#if DEBUG
                     : 8
 #else
-                    : throw new ArgumentException("JWT_EXPIRATION_IN_HOURS")
+                    : 24
 #endif
             ;
 
@@ -68,7 +70,7 @@ public class JwtModule(IConfiguration configuration) : BaseModule(configuration)
                     ValidIssuer = jwtSettings.Issuer,
                     ValidAudience = jwtSettings.Audience,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
-                    ClockSkew = TimeSpan.Zero,
+                    ClockSkew = TimeSpan.Zero
                 };
             });
 

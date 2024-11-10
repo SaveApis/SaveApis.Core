@@ -8,9 +8,11 @@ using Serilog.Events;
 
 namespace SaveApis.Core.Application.Jobs.Hangfire;
 
-
 [Queue("system")]
-public class CleanupRecurringEventsJob(ILogger logger, IRecurringJobManager manager, IEnumerable<IRecurringEvent> events) : BaseJob<ApplicationStartedEvent>(logger)
+public class CleanupRecurringEventsJob(
+    ILogger logger,
+    IRecurringJobManager manager,
+    IEnumerable<IRecurringEvent> events) : BaseJob<ApplicationStartedEvent>(logger)
 {
     [JobDisplayName("Remove outdated recurring events")]
     public override Task RunAsync(ApplicationStartedEvent @event, CancellationToken cancellationToken = default)

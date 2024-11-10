@@ -27,7 +27,8 @@ public static class WebApplicationBuilderExtension
                 containerBuilder.RegisterModule(new JwtModule(builder.Configuration));
                 containerBuilder.RegisterModule(new EasyCachingModule(builder.Configuration));
 
-                var assemblies = ContainerBuilderExtension.Assemblies.Where(it => it != Assembly.GetExecutingAssembly()).ToArray();
+                var assemblies = ContainerBuilderExtension.Assemblies
+                    .Where(it => it != Assembly.GetExecutingAssembly()).ToArray();
                 containerBuilder.RegisterAssemblyModules(assemblies);
             });
 

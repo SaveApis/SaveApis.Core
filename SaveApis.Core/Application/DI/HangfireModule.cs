@@ -43,7 +43,8 @@ public class HangfireModule(IConfiguration configuration) : BaseModule(configura
             {
                 var interfaces = t.GetInterfaces();
                 var isJob = interfaces.Any(it => it.IsGenericType && it.GetGenericTypeDefinition() == typeof(IJob<>));
-                var isModuleJob = interfaces.Any(it => it.IsGenericType && it.GetGenericTypeDefinition() == typeof(IModuleSpecifiedJob<>));
+                var isModuleJob = interfaces.Any(it =>
+                    it.IsGenericType && it.GetGenericTypeDefinition() == typeof(IModuleSpecifiedJob<>));
 
                 return isJob && !isModuleJob;
             })

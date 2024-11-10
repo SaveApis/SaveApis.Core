@@ -7,7 +7,8 @@ using SaveApis.Core.Infrastructure.DI;
 
 namespace SaveApis.Core.Application.DI;
 
-public class GraphQlModule<TQuery, TMutation>(IConfiguration configuration) : BaseModule(configuration) where TQuery : class where TMutation : class
+public class GraphQlModule<TQuery, TMutation>(IConfiguration configuration)
+    : BaseModule(configuration) where TQuery : class where TMutation : class
 {
     protected override void Register(ContainerBuilder builder)
     {
