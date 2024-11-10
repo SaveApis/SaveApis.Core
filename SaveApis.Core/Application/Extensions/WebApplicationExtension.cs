@@ -13,10 +13,7 @@ public static class WebApplicationExtension
         application.UseAuthentication();
         application.UseAuthorization();
 
-        foreach (var action in WebApplicationBuilderExtension.PostActions)
-        {
-            action(application);
-        }
+        foreach (var action in WebApplicationBuilderExtension.PostActions) action(application);
 
         application.MapControllers().RequireAuthorization();
 

@@ -19,6 +19,7 @@ public class MediatorModule(IConfiguration configuration) : BaseModule(configura
         {
             configuration.RegisterServicesFromAssemblies(ContainerBuilderExtension.Assemblies);
             configuration.AddOpenBehavior(typeof(CachedQueryPipeline<,>));
+            configuration.AddOpenBehavior(typeof(ValidationPipeline<,>));
         });
 
         builder.Populate(collection);

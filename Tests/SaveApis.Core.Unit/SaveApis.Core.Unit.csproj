@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\SaveApis.Core\SaveApis.Core.csproj" />
+        <ProjectReference Include="..\..\SaveApis.Core\SaveApis.Core.csproj"/>
     </ItemGroup>
 
 </Project>

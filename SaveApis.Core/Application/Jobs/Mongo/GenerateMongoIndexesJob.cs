@@ -8,7 +8,8 @@ using Serilog.Events;
 namespace SaveApis.Core.Application.Jobs.Mongo;
 
 [Queue("system")]
-public class GenerateMongoIndexesJob(ILogger logger, IEnumerable<IMongoIndex> indices) : BaseModuleSpecifiedJob<ApplicationStartedEvent>(logger)
+public class GenerateMongoIndexesJob(ILogger logger, IEnumerable<IMongoIndex> indices)
+    : BaseModuleSpecifiedJob<ApplicationStartedEvent>(logger)
 {
     [JobDisplayName("Generate mongo indexes")]
     public override async Task RunAsync(ApplicationStartedEvent @event, CancellationToken cancellationToken = default)

@@ -39,7 +39,7 @@ public class SwaggerModule(IConfiguration configuration) : BaseModule(configurat
                         },
                         Scheme = "oauth2",
                         Name = "Bearer",
-                        In = ParameterLocation.Header,
+                        In = ParameterLocation.Header
                     },
                     []
                 }

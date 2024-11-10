@@ -11,7 +11,8 @@ public abstract class BaseMongoVersionIndex<TModel>(IMongoCollectionFactory fact
     public abstract string Name { get; }
     protected abstract BaseMongoVersionCollectionSpecification<TModel> Specification { get; }
 
-    public abstract IndexKeysDefinition<MongoVersionObject<TModel>> CreateKey(IndexKeysDefinitionBuilder<MongoVersionObject<TModel>> builder);
+    protected abstract IndexKeysDefinition<MongoVersionObject<TModel>> CreateKey(
+        IndexKeysDefinitionBuilder<MongoVersionObject<TModel>> builder);
 
     public async Task Create()
     {
@@ -20,10 +21,7 @@ public abstract class BaseMongoVersionIndex<TModel>(IMongoCollectionFactory fact
         var indexCursor = await collection.Indexes.ListAsync();
         var indexes = await indexCursor.ToListAsync();
 
-        if (indexes.Any(i => i["name"].AsString.Equals(Name, StringComparison.InvariantCultureIgnoreCase)))
-        {
-            return;
-        }
+        if (indexes.Any(i => i["name"].AsString.Equals(Name, StringComparison.InvariantCultureIgnoreCase))) return;
 
         var key = CreateKey(collection.IndexKeys());
         var indexOptions = new CreateIndexOptions

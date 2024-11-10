@@ -6,7 +6,10 @@ using Serilog;
 
 namespace SaveApis.Core.Application.Handler;
 
-public class HangfireNotificationHandler<TNotification>(ILogger logger, IBackgroundJobClient backgroundJobClient, IEnumerable<IJob<TNotification>> assignedJobs)
+public class HangfireNotificationHandler<TNotification>(
+    ILogger logger,
+    IBackgroundJobClient backgroundJobClient,
+    IEnumerable<IJob<TNotification>> assignedJobs)
     : INotificationHandler<TNotification> where TNotification : IEvent
 {
     public Task Handle(TNotification notification, CancellationToken cancellationToken)

@@ -19,10 +19,7 @@ public abstract class BaseMongoIndex<TModel>(IMongoCollectionFactory factory) : 
         var indexCursor = await collection.Indexes.ListAsync();
         var indexes = await indexCursor.ToListAsync();
 
-        if (indexes.Any(i => i["name"].AsString.Equals(Name, StringComparison.InvariantCultureIgnoreCase)))
-        {
-            return;
-        }
+        if (indexes.Any(i => i["name"].AsString.Equals(Name, StringComparison.InvariantCultureIgnoreCase))) return;
 
         var key = CreateKey(collection.IndexKeys());
         var indexOptions = new CreateIndexOptions

@@ -14,7 +14,9 @@ public class MongoVersionIndex(IMongoCollectionFactory factory) : BaseMongoVersi
 
     protected override BaseMongoVersionCollectionSpecification<VersionMongoEntity> Specification =>
         new MongoVersionCollectionSpecification();
-    public override IndexKeysDefinition<MongoVersionObject<VersionMongoEntity>> CreateKey(IndexKeysDefinitionBuilder<MongoVersionObject<VersionMongoEntity>> builder)
+
+    protected override IndexKeysDefinition<MongoVersionObject<VersionMongoEntity>> CreateKey(
+        IndexKeysDefinitionBuilder<MongoVersionObject<VersionMongoEntity>> builder)
     {
         return builder.Ascending(x => x.Data.Name);
     }

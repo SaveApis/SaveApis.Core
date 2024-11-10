@@ -10,8 +10,10 @@ namespace SaveApis.Core.Example.Persistence.Mongo.Index;
 public class MongoIndex(IMongoCollectionFactory factory) : BaseMongoIndex<MongoEntity>(factory)
 {
     public override string Name => "mongo_entity_name";
+
     protected override BaseMongoCollectionSpecification<MongoEntity> Specification =>
         new MongoCollectionSpecification();
+
     public override IndexKeysDefinition<MongoEntity> CreateKey(IndexKeysDefinitionBuilder<MongoEntity> builder)
     {
         return builder.Ascending(x => x.Name);

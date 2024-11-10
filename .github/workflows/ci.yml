@@ -30,8 +30,6 @@ jobs:
           VALIDATE_CSHARP: true
           VALIDATE_GITHUB_ACTIONS: true
   build:
-    needs:
-      - lint
     name: Build
     runs-on: self-hosted
     steps:
