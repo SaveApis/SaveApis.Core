@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.11.0"></a>
+## [1.11.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.11.0) (2024-11-10)
+
+### Features
+
+* **modules:** Read environment variables on creation ([#62](https://www.github.com/SaveApis/SaveApis.Core/issues/62)) ([92093cb](https://www.github.com/SaveApis/SaveApis.Core/commit/92093cb0ad16eb9b085d5fd4fb6e5757f28ebf95))
+
 <a name="1.10.0"></a>
 ## [1.10.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.10.0) (2024-11-08)
 
