@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.WithAutofac((containerBuilder, configuration) => containerBuilder
     .WithAssemblies(Assembly.GetExecutingAssembly()).WithMongo(configuration)
     .WithEfCore(configuration).WithSwagger(configuration).WithGraphQl<ExampleQuery, ExampleMutation>(configuration)
-    .WithAutoMapper(configuration).WithFluentValidator(configuration).WithSignalR(configuration));
+    .WithAutoMapper(configuration).WithSignalR(configuration));
 
 builder.Services.AddControllers();
 
