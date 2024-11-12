@@ -26,6 +26,7 @@ public static class WebApplicationBuilderExtension
                 containerBuilder.RegisterModule(new HangfireModule(builder.Configuration));
                 containerBuilder.RegisterModule(new JwtModule(builder.Configuration));
                 containerBuilder.RegisterModule(new EasyCachingModule(builder.Configuration));
+                containerBuilder.RegisterModule(new FluentValidatorModule(builder.Configuration));
 
                 var assemblies = ContainerBuilderExtension.Assemblies
                     .Where(it => it != Assembly.GetExecutingAssembly()).ToArray();

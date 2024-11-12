@@ -24,12 +24,6 @@ public static class ContainerBuilderExtension
         return builder;
     }
 
-    public static ContainerBuilder WithFluentValidator(this ContainerBuilder builder, IConfiguration configuration)
-    {
-        builder.RegisterModule(new FluentValidatorModule(configuration));
-        return builder;
-    }
-
     public static ContainerBuilder WithSignalR(this ContainerBuilder builder, IConfiguration configuration)
     {
         builder.RegisterModule(new SignalRModule(configuration));
