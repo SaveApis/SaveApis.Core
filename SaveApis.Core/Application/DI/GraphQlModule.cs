@@ -19,7 +19,9 @@ public class GraphQlModule<TQuery, TMutation>(IConfiguration configuration)
         collection.AddGraphQLServer()
             .AddAuthorization()
             .AddQueryType<TQuery>()
-            .AddMutationType<TMutation>();
+            .AddMutationType<TMutation>()
+            .AddFiltering()
+            .AddSorting();
 
         builder.Populate(collection);
     }
