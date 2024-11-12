@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.12.0"></a>
+## [1.12.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.12.0) (2024-11-12)
+
+### Features
+
+* **modules:** Add exception pipeline ([#65](https://www.github.com/SaveApis/SaveApis.Core/issues/65)) ([a07bf0d](https://www.github.com/SaveApis/SaveApis.Core/commit/a07bf0df98aed2655c1ab260f2fe897079dc4e03))
+* **modules:** Add filtering & sorting to GraphQL ([#64](https://www.github.com/SaveApis/SaveApis.Core/issues/64)) ([89de6e0](https://www.github.com/SaveApis/SaveApis.Core/commit/89de6e0970e77cdaa9f97134dc09626944507108))
+
+### Bug Fixes
+
+* **modules:** Auto register FluentValidationModule ([#63](https://www.github.com/SaveApis/SaveApis.Core/issues/63)) ([6cb6c00](https://www.github.com/SaveApis/SaveApis.Core/commit/6cb6c00d959e3fe315a90a87c6b9f54ab6a9df75))
+
 <a name="1.11.0"></a>
 ## [1.11.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.11.0) (2024-11-10)
 
