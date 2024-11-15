@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.13.0"></a>
+## [1.13.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.13.0) (2024-11-15)
+
+### Features
+
+* Enable ElasticSearch support ([#66](https://www.github.com/SaveApis/SaveApis.Core/issues/66)) ([90d8ff0](https://www.github.com/SaveApis/SaveApis.Core/commit/90d8ff094e62586d27db32d7907568b3baff1f44))
+
 <a name="1.12.0"></a>
 ## [1.12.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.12.0) (2024-11-12)
 
