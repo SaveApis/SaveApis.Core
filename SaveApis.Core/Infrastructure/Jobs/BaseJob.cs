@@ -16,6 +16,30 @@ public abstract class BaseJob<TEvent>(ILogger logger) : IJob<TEvent>
     [MessageTemplateFormatMethod("message")]
     protected void Log(LogEventLevel level, string message, Exception? exception = null, params object[] args)
     {
-        logger.Write(level, exception, $"{{JobName}} | {message}", [GetType().Name, .. args]);
+        var scopedLogger = logger.ForContext("job.name", GetType().FullName);
+
+        switch (level)
+        {
+            case LogEventLevel.Verbose:
+                scopedLogger.Verbose(exception, message, [.. args]);
+                break;
+            case LogEventLevel.Debug:
+                scopedLogger.Debug(exception, message, [.. args]);
+                break;
+            case LogEventLevel.Information:
+                scopedLogger.Information(exception, message, [.. args]);
+                break;
+            case LogEventLevel.Warning:
+                scopedLogger.Warning(exception, message, [.. args]);
+                break;
+            case LogEventLevel.Error:
+                scopedLogger.Error(exception, message, [.. args]);
+                break;
+            case LogEventLevel.Fatal:
+                scopedLogger.Fatal(exception, message, [.. args]);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(level), level, null);
+        }
     }
 }

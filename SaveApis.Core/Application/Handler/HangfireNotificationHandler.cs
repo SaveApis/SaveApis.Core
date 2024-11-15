@@ -14,10 +14,12 @@ public class HangfireNotificationHandler<TNotification>(
 {
     public Task Handle(TNotification notification, CancellationToken cancellationToken)
     {
-        logger.Information("Received Hangfire notification: {Notification}", notification.GetType().Name);
+        var scopedLogger = logger.ForContext("event", notification.GetType().FullName);
+        scopedLogger.Information("Received Hangfire notification");
+
         foreach (var job in assignedJobs)
         {
-            logger.Debug("Enqueue job: {Name}", job.GetType().Name);
+            scopedLogger.Information("Enqueue job: {Name}", job.GetType().FullName);
             backgroundJobClient.Enqueue(() => job.RunAsync(notification, cancellationToken));
         }
 

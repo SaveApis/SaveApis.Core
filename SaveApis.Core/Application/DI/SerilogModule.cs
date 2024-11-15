@@ -1,5 +1,10 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Elastic.CommonSchema.Serilog;
+using Elastic.Ingest.Elasticsearch;
+using Elastic.Ingest.Elasticsearch.DataStreams;
+using Elastic.Serilog.Sinks;
+using Elastic.Transport;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SaveApis.Core.Infrastructure.DI;
@@ -16,27 +21,31 @@ public class SerilogModule(IConfiguration configuration) : BaseModule(configurat
         var collection = new ServiceCollection();
         collection.AddSerilog(config =>
         {
-            var logLevel = Configuration["SAVEAPIS_LOG_LEVEL"] ?? "Information";
-            config = Enum.Parse<LogEventLevel>(logLevel) switch
-            {
-                LogEventLevel.Debug => config.MinimumLevel.Debug(),
-                LogEventLevel.Verbose => config.MinimumLevel.Verbose(),
-                LogEventLevel.Information => config.MinimumLevel.Information(),
-                LogEventLevel.Warning => config.MinimumLevel.Warning(),
-                LogEventLevel.Error => config.MinimumLevel.Error(),
-                LogEventLevel.Fatal => config.MinimumLevel.Fatal(),
-                _ => config.MinimumLevel.Information()
-            };
+            var elasticName = Configuration["ELASTICSEARCH_NAME"] ?? "saveapis";
+            var elasticUri = Configuration["ELASTICSEARCH_URL"] ?? "http://localhost:9200";
+
+            var options =
+                new ElasticsearchSinkOptions(new DistributedTransport(new TransportConfiguration(new Uri(elasticUri))))
+                {
+                    DataStream = new DataStreamName($"saveapis-{elasticName}"),
+                    BootstrapMethod = BootstrapMethod.Failure,
+                    TextFormatting = new EcsTextFormatterConfiguration(),
+                    MinimumLevel = LogEventLevel.Verbose
+                };
+
+
             config
+                .MinimumLevel.Verbose()
                 .MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Error)
-                .Enrich.FromLogContext()
                 .WriteTo.Console(
                     outputTemplate:
                     "[{Timestamp:HH:mm:ss} {Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}",
-                    theme: AnsiConsoleTheme.Code, applyThemeToRedirectedOutput: true)
+                    theme: AnsiConsoleTheme.Code, applyThemeToRedirectedOutput: true,
+                    restrictedToMinimumLevel: LogEventLevel.Information)
                 .WriteTo.File("Log/log.txt", rollingInterval: RollingInterval.Day,
                     outputTemplate:
-                    "[{Timestamp:HH:mm:ss} {Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}");
+                    "[{Timestamp:HH:mm:ss} {Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}")
+                .WriteTo.Elasticsearch(options);
         });
 
         builder.Populate(collection);
