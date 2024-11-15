@@ -24,6 +24,7 @@
         <PackageReference Include="EasyCaching.InMemory" Version="1.9.2" />
         <PackageReference Include="EasyCaching.Redis" Version="1.9.2" />
         <PackageReference Include="EasyCaching.Serialization.Json" Version="1.9.2" />
+        <PackageReference Include="Elastic.Serilog.Sinks" Version="8.12.2" />
         <PackageReference Include="FluentResults" Version="3.16.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
         <PackageReference Include="Hangfire.AspNetCore" Version="1.8.15" />
@@ -47,6 +48,6 @@
         <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
         <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
         <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
     </ItemGroup>
 </Project>
