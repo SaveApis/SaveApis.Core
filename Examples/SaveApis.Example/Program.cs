@@ -1,9 +1,10 @@
+using SaveApis.Core.Infrastructure.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddGraphQL().AddTypes();
+// .AddTypes is required to register Queries/Mutations
+builder.AddSaveApis(executorBuilder => executorBuilder.AddTypes());
 
 var app = builder.Build();
 
-app.MapGraphQL();
-
-app.RunWithGraphQLCommands(args);
+await app.RunSaveApisAsync(args).ConfigureAwait(false);

@@ -190,6 +190,7 @@ dotnet_diagnostic.RCS1143.severity = suggestion
 dotnet_diagnostic.RCS1145.severity = suggestion
 dotnet_diagnostic.RCS1151.severity = suggestion
 dotnet_diagnostic.RCS1162.severity = suggestion
+dotnet_diagnostic.RCS1163.severity = warning
 dotnet_diagnostic.RCS1170.severity = none
 dotnet_diagnostic.RCS1188.severity = suggestion
 dotnet_diagnostic.RCS1189.severity = suggestion
