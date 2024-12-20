@@ -1,9 +1,13 @@
+using System.Reflection;
 using SaveApis.Core.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// .WithAssemblies is required to register custom services created in THIS project
 // .AddTypes is required to register Queries/Mutations
-builder.AddSaveApis(executorBuilder => executorBuilder.AddTypes());
+builder
+    .WithAssemblies(Assembly.GetExecutingAssembly())
+    .AddSaveApis(executorBuilder => executorBuilder.AddTypes());
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System.Globalization;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,8 +19,9 @@ public class SerilogModule(IConfiguration configuration) : BaseModule(configurat
         {
             loggerConfiguration.MinimumLevel.Verbose();
             loggerConfiguration.Enrich.FromLogContext();
-            loggerConfiguration.WriteTo.Console(LogEventLevel.Debug);
-            loggerConfiguration.WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day);
+            loggerConfiguration.WriteTo.Console(LogEventLevel.Debug, formatProvider: CultureInfo.InvariantCulture);
+            loggerConfiguration.WriteTo.File("logs/log.txt", formatProvider: CultureInfo.InvariantCulture,
+                rollingInterval: RollingInterval.Day);
         });
 
         builder.Populate(collection);

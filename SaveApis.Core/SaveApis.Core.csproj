@@ -15,9 +15,13 @@
     <ItemGroup>
         <PackageReference Include="Autofac" Version="8.2.0" />
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+        <PackageReference Include="FluentResults" Version="3.16.0" />
+        <PackageReference Include="FluentValidation" Version="11.11.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
         <PackageReference Include="HotChocolate.AspNetCore" Version="14.3.0"/>
         <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="14.3.0"/>
         <PackageReference Include="HotChocolate.Data" Version="14.3.0" />
+        <PackageReference Include="MediatR" Version="12.4.1" />
         <PackageReference Include="Roslynator.Analyzers" Version="4.12.10">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -1,0 +1,5 @@
+﻿GRAPHQL http://localhost/graphql
+
+query TestQuery {
+    testQuery(test: "Test")
+}
