@@ -1,5 +1,8 @@
 ﻿services:
   example:
+    depends_on:
+      redis:
+        condition: service_healthy
     image: saveapis-example:dev
     build:
       context: ..
@@ -7,5 +10,24 @@
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=80
+      - hangfire_name=example
+      - hangfire_redis_host=redis
+      - hangfire_redis_port=6379
+      - hangfire_redis_database=0
+      - hangfire_redis_prefix=example
     ports:
       - "80:80"
+  redis:
+    image: redis:8.0-M02-alpine3.20
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+
+volumes:
+  redis-data:

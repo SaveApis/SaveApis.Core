@@ -30,6 +30,7 @@ public static class WebApplicationBuilderExtensions
             {
                 containerBuilder.WithModule<FluentValidationModule>(builder.Configuration);
                 containerBuilder.WithModule<MediatorModule>(builder.Configuration);
+                containerBuilder.WithModule<HangfireModule>(builder.Configuration);
                 additionalModules?.Invoke(containerBuilder, builder.Configuration);
 
                 // Register serilog at the end to ensure it's the last module registered and overwrites EVERY other logger

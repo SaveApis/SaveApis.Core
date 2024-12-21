@@ -23,6 +23,10 @@ jobs:
         uses: actions/setup-dotnet@v4.1.0
         with:
           dotnet-version: 9.0.x
+      - name: Add nuget sources
+        run: |
+          dotnet nuget add source ${{ secrets.HANGFIRE_ACE_URL }} --name Hangfire.ACE --username ${{ secrets.HANGFIRE_ACE_USER }} --password ${{ secrets.HANGFIRE_ACE_TOKEN }} --store-password-in-clear-text
+          dotnet nuget add source ${{ secrets.HANGFIRE_PRO_URL }} --name Hangfire.Pro --username ${{ secrets.HANGFIRE_PRO_USER }} --password ${{ secrets.HANGFIRE_PRO_TOKEN }} --store-password-in-clear-text
       - name: Restore Dependencies
         run: dotnet restore SaveApis.Core/SaveApis.Core.csproj
       - name: Build
