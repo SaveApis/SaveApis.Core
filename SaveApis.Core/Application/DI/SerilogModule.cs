@@ -19,7 +19,7 @@ public class SerilogModule(IConfiguration configuration) : BaseModule(configurat
         {
             loggerConfiguration.MinimumLevel.Verbose();
             loggerConfiguration.Enrich.FromLogContext();
-            loggerConfiguration.WriteTo.Console(LogEventLevel.Debug, formatProvider: CultureInfo.InvariantCulture);
+            loggerConfiguration.WriteTo.Console(LogEventLevel.Information, formatProvider: CultureInfo.InvariantCulture);
             loggerConfiguration.WriteTo.File("logs/log.txt", formatProvider: CultureInfo.InvariantCulture,
                 rollingInterval: RollingInterval.Day);
         });
