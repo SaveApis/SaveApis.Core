@@ -23,7 +23,7 @@ public static class WebApplicationBuilderExtensions
 
     public static WebApplicationBuilder AddSaveApis(this WebApplicationBuilder builder,
         Action<IRequestExecutorBuilder> configureGraphQl,
-        Func<ContainerBuilder, IConfiguration, ContainerBuilder>? additionalModules = null)
+        Action<ContainerBuilder, IConfiguration>? additionalModules = null)
     {
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>(containerBuilder =>
@@ -31,6 +31,7 @@ public static class WebApplicationBuilderExtensions
                 containerBuilder.WithModule<FluentValidationModule>(builder.Configuration);
                 containerBuilder.WithModule<MediatorModule>(builder.Configuration);
                 containerBuilder.WithModule<HangfireModule>(builder.Configuration);
+                containerBuilder.WithModule<CorrelationModule>(builder.Configuration);
                 additionalModules?.Invoke(containerBuilder, builder.Configuration);
 
                 // Register serilog at the end to ensure it's the last module registered and overwrites EVERY other logger
