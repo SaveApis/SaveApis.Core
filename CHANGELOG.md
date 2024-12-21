@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.0.0"></a>
+## [2.0.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.0.0) (2024-12-21)
+
+### Features
+
+* Change .NET version ([#67](https://www.github.com/SaveApis/SaveApis.Core/issues/67)) ([5fd9c45](https://www.github.com/SaveApis/SaveApis.Core/commit/5fd9c45843acb67af6fefa5cb2b76804cc83fd27))
+* **modules:** Correlate Module ([#71](https://www.github.com/SaveApis/SaveApis.Core/issues/71)) ([7a8f927](https://www.github.com/SaveApis/SaveApis.Core/commit/7a8f927ce2dd6867ae0cabe5d9ab77e07166ae89))
+* **modules:** EfCore Module ([#72](https://www.github.com/SaveApis/SaveApis.Core/issues/72)) ([f4b97bc](https://www.github.com/SaveApis/SaveApis.Core/commit/f4b97bce1492d266be8c29dde9c302d39a8609f8))
+* **modules:** Hangfire Module ([#70](https://www.github.com/SaveApis/SaveApis.Core/issues/70)) ([ac1887b](https://www.github.com/SaveApis/SaveApis.Core/commit/ac1887b24363100b55168eb02bf9b346d63c13fc))
+* **modules:** Mediator Module ([#69](https://www.github.com/SaveApis/SaveApis.Core/issues/69)) ([a7c1732](https://www.github.com/SaveApis/SaveApis.Core/commit/a7c1732589ea958b749c9321257c55fbf49d20b5))
+* **modules:** Serilog Module ([#68](https://www.github.com/SaveApis/SaveApis.Core/issues/68)) ([4bb15ff](https://www.github.com/SaveApis/SaveApis.Core/commit/4bb15ff40578b1f26db461dec26fc1b37e3c5f73))
+
+### Breaking Changes
+
+* Change .NET version ([#67](https://www.github.com/SaveApis/SaveApis.Core/issues/67)) ([5fd9c45](https://www.github.com/SaveApis/SaveApis.Core/commit/5fd9c45843acb67af6fefa5cb2b76804cc83fd27))
+
 <a name="1.13.0"></a>
 ## [1.13.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.13.0) (2024-11-15)
 

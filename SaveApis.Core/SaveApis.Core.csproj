@@ -8,32 +8,32 @@
         <Authors>SaveApis | Software Development &amp; Deployment</Authors>
         <RepositoryUrl>https://github.com/SaveApis/SaveApis.Core/</RepositoryUrl>
         <RepositoryType>GitHub</RepositoryType>
-        <Version>1.13.0</Version>
+        <Version>2.0.0</Version>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="8.2.0"/>
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0"/>
-        <PackageReference Include="Correlate.AspNetCore" Version="6.0.0"/>
-        <PackageReference Include="FluentResults" Version="3.16.0"/>
-        <PackageReference Include="FluentValidation" Version="11.11.0"/>
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0"/>
-        <PackageReference Include="Hangfire.AspNetCore" Version="1.8.17"/>
-        <PackageReference Include="Hangfire.Autofac" Version="2.6.0"/>
-        <PackageReference Include="Hangfire.Correlate" Version="2.2.0"/>
-        <PackageReference Include="Hangfire.Pro.Redis" Version="3.1.0"/>
-        <PackageReference Include="HotChocolate.AspNetCore" Version="14.3.0"/>
-        <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="14.3.0"/>
-        <PackageReference Include="HotChocolate.Data" Version="14.3.0"/>
-        <PackageReference Include="MediatR" Version="12.4.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0"/>
+        <PackageReference Include="Autofac" Version="8.2.0" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+        <PackageReference Include="Correlate.AspNetCore" Version="6.0.0" />
+        <PackageReference Include="FluentResults" Version="3.16.0" />
+        <PackageReference Include="FluentValidation" Version="11.11.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+        <PackageReference Include="Hangfire.AspNetCore" Version="1.8.17" />
+        <PackageReference Include="Hangfire.Autofac" Version="2.6.0" />
+        <PackageReference Include="Hangfire.Correlate" Version="2.2.0" />
+        <PackageReference Include="Hangfire.Pro.Redis" Version="3.1.0" />
+        <PackageReference Include="HotChocolate.AspNetCore" Version="14.3.0" />
+        <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="14.3.0" />
+        <PackageReference Include="HotChocolate.Data" Version="14.3.0" />
+        <PackageReference Include="MediatR" Version="12.4.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-preview.2.efcore.9.0.0"/>
-        <PackageReference Include="Riok.Mapperly" Version="4.1.1"/>
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-preview.2.efcore.9.0.0" />
+        <PackageReference Include="Riok.Mapperly" Version="4.1.1" />
         <PackageReference Include="Roslynator.Analyzers" Version="4.12.10">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -46,12 +46,12 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Roslynator.CSharp" Version="4.12.10"/>
+        <PackageReference Include="Roslynator.CSharp" Version="4.12.10" />
         <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.12.10">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0"/>
-        <PackageReference Include="Vogen" Version="5.0.6"/>
+        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+        <PackageReference Include="Vogen" Version="5.0.6" />
     </ItemGroup>
 </Project>
