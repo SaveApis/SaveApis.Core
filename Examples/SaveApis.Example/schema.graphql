@@ -16,5 +16,14 @@ type Mutation {
 }
 
 type Query {
+    testEntities: [TestGetDto!]!
     testQuery(test: String!): String!
 }
+
+type TestGetDto {
+    description: String!
+    id: UUID!
+    name: String!
+}
+
+scalar UUID
