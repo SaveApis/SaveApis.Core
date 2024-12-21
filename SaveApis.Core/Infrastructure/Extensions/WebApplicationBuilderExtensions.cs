@@ -28,6 +28,7 @@ public static class WebApplicationBuilderExtensions
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>(containerBuilder =>
             {
+                containerBuilder.WithModule<EfCoreModule>(builder.Configuration);
                 containerBuilder.WithModule<FluentValidationModule>(builder.Configuration);
                 containerBuilder.WithModule<MediatorModule>(builder.Configuration);
                 containerBuilder.WithModule<HangfireModule>(builder.Configuration);

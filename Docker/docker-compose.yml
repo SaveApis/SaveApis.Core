@@ -3,6 +3,8 @@
     depends_on:
       redis:
         condition: service_healthy
+      mysql:
+        condition: service_healthy
     image: saveapis-example:dev
     build:
       context: ..
@@ -15,6 +17,12 @@
       - hangfire_redis_port=6379
       - hangfire_redis_database=0
       - hangfire_redis_prefix=example
+      - db_mysql_name=example
+      - db_mysql_host=mysql
+      - db_mysql_port=3306
+      - db_mysql_user=root
+      - db_mysql_password=root
+      - db_mysql_database=example
     ports:
       - "80:80"
   redis:
@@ -28,6 +36,20 @@
       interval: 5s
       timeout: 2s
       retries: 3
+  mysql:
+    image: mysql:9.1.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=example
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
 
 volumes:
   redis-data:
+  mysql-data:
