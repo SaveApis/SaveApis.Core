@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Hangfire;
+using Hangfire.Correlate;
 using Hangfire.Dashboard;
 using Hangfire.Pro.Redis;
 using MediatR;
@@ -67,7 +68,7 @@ public class HangfireModule(IConfiguration configuration) : BaseModule(configura
 
         var collection = new ServiceCollection();
 
-        collection.AddHangfire((_, globalConfiguration) =>
+        collection.AddHangfire((provider, globalConfiguration) =>
         {
             globalConfiguration.SetDataCompatibilityLevel(CompatibilityLevel.Version_180);
             globalConfiguration.UseSimpleAssemblyNameTypeSerializer();
@@ -77,6 +78,7 @@ public class HangfireModule(IConfiguration configuration) : BaseModule(configura
                 Database = hangfireRedisDatabase,
                 Prefix = hangfireRedisPrefix,
             });
+            globalConfiguration.UseCorrelate(provider);
         });
         collection.AddHangfireServer((_, options) =>
         {
