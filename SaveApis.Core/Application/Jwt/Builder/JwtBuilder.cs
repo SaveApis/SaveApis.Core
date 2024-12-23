@@ -59,6 +59,11 @@ public class JwtBuilder(IConfiguration configuration) : IJwtBuilder
         return handler.WriteToken(token);
     }
 
+    public Task<string> BuildAsync()
+    {
+        return Task.FromResult(Build());
+    }
+
     private ClaimsIdentity GenerateClaims()
     {
         var claimsIdentity = new ClaimsIdentity();

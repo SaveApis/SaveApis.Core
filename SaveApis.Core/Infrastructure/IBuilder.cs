@@ -1,6 +1,7 @@
 ﻿namespace SaveApis.Core.Infrastructure;
 
-public interface IBuilder<out TResult>
+public interface IBuilder<TResult>
 {
     TResult Build();
+    Task<TResult> BuildAsync();
 }
