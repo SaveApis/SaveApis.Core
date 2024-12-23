@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.1.0"></a>
+## [2.1.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.1.0) (2024-12-23)
+
+### Features
+
+* **modules:** JWT Module ([#73](https://www.github.com/SaveApis/SaveApis.Core/issues/73)) ([e82cad9](https://www.github.com/SaveApis/SaveApis.Core/commit/e82cad929ef37e24ee7c15471404b0ac53ac3e41))
+
 <a name="2.0.0"></a>
 ## [2.0.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.0.0) (2024-12-21)
 
