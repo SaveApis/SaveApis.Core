@@ -1,0 +1,5 @@
+﻿GRAPHQL http://localhost/graphql
+
+mutation Token {
+    administratorToken
+}

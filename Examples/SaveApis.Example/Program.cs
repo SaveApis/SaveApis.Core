@@ -1,4 +1,5 @@
 using System.Reflection;
+using SaveApis.Core.Application.Jwt;
 using SaveApis.Core.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // .AddTypes is required to register Queries/Mutations
 builder
     .WithAssemblies(Assembly.GetExecutingAssembly())
-    .AddSaveApis(executorBuilder => executorBuilder.AddTypes());
+    .AddSaveApis(executorBuilder => executorBuilder.AddTypes(), AuthenticationMode.Jwt);
 
 var app = builder.Build();
 
