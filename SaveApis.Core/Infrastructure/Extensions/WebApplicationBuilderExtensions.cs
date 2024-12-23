@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SaveApis.Core.Application.DI;
+using SaveApis.Core.Application.Jwt;
 
 namespace SaveApis.Core.Infrastructure.Extensions;
 
@@ -23,11 +24,17 @@ public static class WebApplicationBuilderExtensions
 
     public static WebApplicationBuilder AddSaveApis(this WebApplicationBuilder builder,
         Action<IRequestExecutorBuilder> configureGraphQl,
+        AuthenticationMode authenticationMode = AuthenticationMode.None,
         Action<ContainerBuilder, IConfiguration>? additionalModules = null)
     {
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>(containerBuilder =>
             {
+                if (authenticationMode == AuthenticationMode.Jwt)
+                {
+                    containerBuilder.WithModule<JwtModule>(builder.Configuration);
+                }
+
                 containerBuilder.WithModule<EfCoreModule>(builder.Configuration);
                 containerBuilder.WithModule<FluentValidationModule>(builder.Configuration);
                 containerBuilder.WithModule<MediatorModule>(builder.Configuration);
@@ -41,6 +48,11 @@ public static class WebApplicationBuilderExtensions
 
         var requestExecutorBuilder = builder.AddGraphQL().AddSorting().AddFiltering();
         configureGraphQl(requestExecutorBuilder);
+
+        if (authenticationMode == AuthenticationMode.Jwt)
+        {
+            requestExecutorBuilder.AddAuthorization();
+        }
 
         return builder;
     }

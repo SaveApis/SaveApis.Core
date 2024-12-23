@@ -12,10 +12,16 @@ directive @cost(
 ) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
 
 type Mutation {
+    administratorToken: String!
+    managerToken: String!
     testCommand(test: String!): String!
+    userToken: String!
 }
 
 type Query {
+    administrator: String!
+    anonym: String!
+    authenticated: String!
     testEntities: [TestGetDto!]!
     testQuery(test: String!): String!
 }
@@ -24,6 +30,16 @@ type TestGetDto {
     description: String!
     id: UUID!
     name: String!
+}
+
+"Defines when a policy shall be executed."
+enum ApplyPolicy {
+    "After the resolver was executed."
+    AFTER_RESOLVER
+    "Before the resolver was executed."
+    BEFORE_RESOLVER
+    "The policy is applied in the validation step before the execution."
+    VALIDATION
 }
 
 scalar UUID

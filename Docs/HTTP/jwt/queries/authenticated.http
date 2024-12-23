@@ -1,0 +1,6 @@
+﻿GRAPHQL http://localhost/graphql
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0ZXN0IjoidGVzdCIsInJvbGUiOlsiYWRtaW5pc3RyYXRvciIsInVzZXIiLCJtYW5hZ2VyIl0sIm5iZiI6MTczNDg4NzUzMSwiZXhwIjoxNzM0OTE2MzMxLCJpYXQiOjE3MzQ4ODc1MzEsImlzcyI6ImV4YW1wbGUiLCJhdWQiOiJleGFtcGxlIn0.uaT4Q-MNnzbb-K8sKwY_8WPvg3uQzQQ-PhUnlaZByRbjtqCOluaQ9VHFGWRNH0TpHY1fgy-Vt3e6gaJEbAP5VA
+
+query Authenticated {
+    authenticated
+}

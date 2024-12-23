@@ -23,6 +23,10 @@
       - db_mysql_user=root
       - db_mysql_password=root
       - db_mysql_database=example
+      - jwt_key=arandomkeywith64length123456789123456789123456789123456789123456
+      - jwt_issuer=example
+      - jwt_audience=example
+      - jwt_expiration=8
     ports:
       - "80:80"
   redis:

@@ -5,6 +5,7 @@ using SaveApis.Core.Infrastructure.DI;
 using SaveApis.Core.Infrastructure.Extensions;
 using SaveApis.Core.Infrastructure.Persistence.Sql.Factories;
 using SaveApis.Core.Infrastructure.Persistence.Sql.Manager;
+using SaveApis.Core.Persistence.Sql.Manager;
 
 namespace SaveApis.Core.Application.DI;
 
@@ -18,7 +19,7 @@ public class EfCoreModule(IConfiguration configuration) : BaseModule(configurati
             .As<IDbFactory<DbContext>>()
             .AsImplementedInterfaces();
 
-        builder.RegisterType<IDbManager>().As<IDbManager>();
+        builder.RegisterType<DbManager>().As<IDbManager>();
 
         builder.RegisterBuildCallback(async scope =>
         {
