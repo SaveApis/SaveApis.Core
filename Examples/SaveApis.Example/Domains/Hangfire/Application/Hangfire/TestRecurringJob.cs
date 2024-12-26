@@ -9,9 +9,9 @@ namespace SaveApis.Example.Domains.Hangfire.Application.Hangfire;
 [HangfireQueue(HangfireQueue.Low)]
 public class TestRecurringJob(ILogger logger) : BaseJob<TestRecurringEvent>(logger)
 {
-    public override bool CanExecute(TestRecurringEvent @event)
+    public override Task<bool> CanExecute(TestRecurringEvent @event)
     {
-        return true;
+        return Task.FromResult(true);
     }
 
     [HangfireJobName("Test recurring job")]

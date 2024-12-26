@@ -18,9 +18,9 @@ public class RemoveOutdatedHangfireRecurringEventsJob(
     IMediator mediator,
     IEnumerable<IEvent> events) : BaseJob<ApplicationStartedEvent>(logger)
 {
-    public override bool CanExecute(ApplicationStartedEvent @event)
+    public override Task<bool> CanExecute(ApplicationStartedEvent @event)
     {
-        return true;
+        return Task.FromResult(true);
     }
 
     [HangfireJobName("Remove outdated hangfire recurring events")]
