@@ -12,6 +12,6 @@ public abstract class BaseJob<TEvent> : IJob<TEvent> where TEvent : IEvent
 
     protected ILogger Logger { get; }
 
-    public abstract bool CanExecute(TEvent @event);
+    public abstract Task<bool> CanExecute(TEvent @event);
     public abstract Task RunAsync(TEvent @event, CancellationToken cancellationToken);
 }

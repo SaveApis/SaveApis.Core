@@ -13,9 +13,9 @@ namespace SaveApis.Core.Application.Hangfire.Jobs;
 public class RegisterHangfireRecurringEventsJob(ILogger logger, IRecurringJobManager manager, IMediator mediator, IEnumerable<IEvent> events)
     : BaseJob<OutdatedHangfireRecurringEventsRemovedEvent>(logger)
 {
-    public override bool CanExecute(OutdatedHangfireRecurringEventsRemovedEvent @event)
+    public override Task<bool> CanExecute(OutdatedHangfireRecurringEventsRemovedEvent @event)
     {
-        return true;
+        return Task.FromResult(true);
     }
 
     [HangfireJobName("Register hangfire recurring events")]

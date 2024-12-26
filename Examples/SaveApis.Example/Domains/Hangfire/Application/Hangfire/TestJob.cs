@@ -7,9 +7,9 @@ namespace SaveApis.Example.Domains.Hangfire.Application.Hangfire;
 
 public class TestJob(ILogger logger) : BaseJob<ApplicationStartedEvent>(logger)
 {
-    public override bool CanExecute(ApplicationStartedEvent @event)
+    public override Task<bool> CanExecute(ApplicationStartedEvent @event)
     {
-        return true;
+        return Task.FromResult(true);
     }
 
     [HangfireJobName("Test job")]
