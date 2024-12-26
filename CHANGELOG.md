@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.2.0"></a>
+## [2.2.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.2.0) (2024-12-26)
+
+### Features
+
+* Add async support to CanExecute ([#74](https://www.github.com/SaveApis/SaveApis.Core/issues/74)) ([7517c6d](https://www.github.com/SaveApis/SaveApis.Core/commit/7517c6d4f834448df2ac123b60c0ecbba79d449f))
+
 <a name="2.1.0"></a>
 ## [2.1.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.1.0) (2024-12-23)
 
