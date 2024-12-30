@@ -2,4 +2,4 @@
 
 namespace SaveApis.Core.Application.Hangfire.Events;
 
-public record ApplicationStartedEvent : IEvent;
+public record MigrationCompletedEvent : IEvent;

@@ -2,4 +2,4 @@
 
 namespace SaveApis.Core.Application.Hangfire.Events;
 
-public class OutdatedHangfireRecurringEventsRemovedEvent : IEvent;
+public record OutdatedHangfireRecurringEventsRemovedEvent : IEvent;
