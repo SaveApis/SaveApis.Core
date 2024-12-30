@@ -3,6 +3,7 @@ using Hangfire;
 using Hangfire.Storage;
 using MediatR;
 using SaveApis.Core.Application.Hangfire.Events;
+using SaveApis.Core.Infrastructure.Extensions;
 using SaveApis.Core.Infrastructure.Hangfire.Attributes;
 using SaveApis.Core.Infrastructure.Hangfire.Events;
 using SaveApis.Core.Infrastructure.Hangfire.Jobs;
@@ -15,8 +16,7 @@ public class RemoveOutdatedHangfireRecurringEventsJob(
     ILogger logger,
     JobStorage storage,
     IRecurringJobManager manager,
-    IMediator mediator,
-    IEnumerable<IEvent> events) : BaseJob<ApplicationStartedEvent>(logger)
+    IMediator mediator) : BaseJob<ApplicationStartedEvent>(logger)
 {
     public override Task<bool> CanExecute(ApplicationStartedEvent @event)
     {
@@ -38,8 +38,11 @@ public class RemoveOutdatedHangfireRecurringEventsJob(
 
         // Check if jobs and event contains the same id's
         var jobIds = recurringJobs.ConvertAll(x => x.Id);
-        var recurringEvents = events.Where(it => it.GetType().GetCustomAttribute<HangfireRecurringEventAttribute>() is not null)
-            .Select(it => it.GetType().GetCustomAttribute<HangfireRecurringEventAttribute>()!.Id)
+
+        var recurringEvents = WebApplicationBuilderExtensions.AllAssemblies
+            .SelectMany(it => it.GetTypes())
+            .Where(it => it.IsAssignableTo(typeof(IEvent)) && it.GetCustomAttribute<HangfireRecurringEventAttribute>() is not null)
+            .Select(it => it.GetCustomAttribute<HangfireRecurringEventAttribute>()!.Id)
             .ToList();
 
         foreach (var jobId in jobIds.Except(recurringEvents).ToList())

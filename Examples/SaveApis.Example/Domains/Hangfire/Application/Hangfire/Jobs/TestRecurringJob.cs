@@ -1,10 +1,10 @@
 ﻿using SaveApis.Core.Application.Hangfire;
 using SaveApis.Core.Infrastructure.Hangfire.Attributes;
 using SaveApis.Core.Infrastructure.Hangfire.Jobs;
-using SaveApis.Example.Domains.Hangfire.Application.Events.Recurring;
+using SaveApis.Example.Domains.Hangfire.Application.Hangfire.Events.Recurring;
 using ILogger = Serilog.ILogger;
 
-namespace SaveApis.Example.Domains.Hangfire.Application.Hangfire;
+namespace SaveApis.Example.Domains.Hangfire.Application.Hangfire.Jobs;
 
 [HangfireQueue(HangfireQueue.Low)]
 public class TestRecurringJob(ILogger logger) : BaseJob<TestRecurringEvent>(logger)

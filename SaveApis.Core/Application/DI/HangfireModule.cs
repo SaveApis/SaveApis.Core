@@ -14,7 +14,6 @@ using SaveApis.Core.Application.Hangfire;
 using SaveApis.Core.Application.Hangfire.Events;
 using SaveApis.Core.Infrastructure.DI;
 using SaveApis.Core.Infrastructure.Extensions;
-using SaveApis.Core.Infrastructure.Hangfire.Events;
 using SaveApis.Core.Infrastructure.Hangfire.Jobs;
 using Serilog;
 
@@ -32,12 +31,6 @@ public class HangfireModule(IConfiguration configuration) : BaseModule(configura
         // There are no authorization filter in Core so we only register the filters from the custom assemblies
         builder.RegisterAssemblyTypes(WebApplicationBuilderExtensions.CustomAssemblies.ToArray())
             .Where(type => type.IsAssignableTo<IDashboardAuthorizationFilter>() || type.IsAssignableTo<IDashboardAsyncAuthorizationFilter>())
-            .AsImplementedInterfaces()
-            .InstancePerDependency();
-
-        // Register events
-        builder.RegisterAssemblyTypes(WebApplicationBuilderExtensions.AllAssemblies.ToArray())
-            .Where(type => type.IsAssignableTo<IEvent>())
             .AsImplementedInterfaces()
             .InstancePerDependency();
 
