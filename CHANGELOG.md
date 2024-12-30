@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.2.2"></a>
+## [2.2.2](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.2.2) (2024-12-30)
+
+### Bug Fixes
+
+* Include Exception details in GraphQL response ([#77](https://www.github.com/SaveApis/SaveApis.Core/issues/77)) ([5c66213](https://www.github.com/SaveApis/SaveApis.Core/commit/5c66213ddb29cdf87c4e7a0c357bb124d0c3aaa2))
+
 <a name="2.2.1"></a>
 ## [2.2.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.2.1) (2024-12-30)
 
