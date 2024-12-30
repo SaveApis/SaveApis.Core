@@ -19,7 +19,6 @@ internal class MediatorModule(IConfiguration configuration) : BaseModule(configu
             serviceConfiguration.RegisterServicesFromAssemblies(WebApplicationBuilderExtensions.AllAssemblies
                 .ToArray());
             serviceConfiguration.AddOpenBehavior(typeof(ExceptionBehavior<,>));
-            serviceConfiguration.AddOpenBehavior(typeof(ValidationBehavior<,>));
             serviceConfiguration.RegisterGenericHandlers = true;
         });
 
