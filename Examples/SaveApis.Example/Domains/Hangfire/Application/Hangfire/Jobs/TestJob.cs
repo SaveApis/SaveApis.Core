@@ -3,7 +3,7 @@ using SaveApis.Core.Infrastructure.Hangfire.Attributes;
 using SaveApis.Core.Infrastructure.Hangfire.Jobs;
 using ILogger = Serilog.ILogger;
 
-namespace SaveApis.Example.Domains.Hangfire.Application.Hangfire;
+namespace SaveApis.Example.Domains.Hangfire.Application.Hangfire.Jobs;
 
 public class TestJob(ILogger logger) : BaseJob<ApplicationStartedEvent>(logger)
 {
