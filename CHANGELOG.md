@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.3.0"></a>
+## [2.3.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.3.0) (2024-12-30)
+
+### Features
+
+* **hangfire:** Add MigrationCompletedEvent ([#78](https://www.github.com/SaveApis/SaveApis.Core/issues/78)) ([44493ea](https://www.github.com/SaveApis/SaveApis.Core/commit/44493eae4cf7681a22ead981bb9f65c9eaa42e39))
+
 <a name="2.2.2"></a>
 ## [2.2.2](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.2.2) (2024-12-30)
 
