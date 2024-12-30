@@ -46,7 +46,10 @@ public static class WebApplicationBuilderExtensions
                 containerBuilder.WithModule<SerilogModule>(builder.Configuration);
             });
 
-        var requestExecutorBuilder = builder.AddGraphQL().AddSorting().AddFiltering();
+        var requestExecutorBuilder = builder.AddGraphQL()
+            .AddSorting()
+            .AddFiltering()
+            .ModifyRequestOptions(options => options.IncludeExceptionDetails = true);
         configureGraphQl(requestExecutorBuilder);
 
         if (authenticationMode == AuthenticationMode.Jwt)
