@@ -1,6 +1,8 @@
 ﻿using Autofac;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using SaveApis.Core.Application.Hangfire.Events;
 using SaveApis.Core.Infrastructure.DI;
 using SaveApis.Core.Infrastructure.Extensions;
 using SaveApis.Core.Infrastructure.Persistence.Sql.Factories;
@@ -28,6 +30,9 @@ public class EfCoreModule(IConfiguration configuration) : BaseModule(configurati
                 var context = factory.CreateDbContext([]);
                 await context.Database.MigrateAsync().ConfigureAwait(false);
             }
+
+            var mediator = scope.Resolve<IMediator>();
+            await mediator.Publish(new MigrationCompletedEvent()).ConfigureAwait(false);
         });
     }
 }
