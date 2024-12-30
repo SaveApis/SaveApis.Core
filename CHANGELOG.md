@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.2.1"></a>
+## [2.2.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.2.1) (2024-12-30)
+
+### Bug Fixes
+
+* Don't register events in DI Container ([#76](https://www.github.com/SaveApis/SaveApis.Core/issues/76)) ([4ccd898](https://www.github.com/SaveApis/SaveApis.Core/commit/4ccd89863656435b4fa3fd5a676a6e8eff79040b))
+* Remove MediatR ValidationBehavior ([#75](https://www.github.com/SaveApis/SaveApis.Core/issues/75)) ([5594376](https://www.github.com/SaveApis/SaveApis.Core/commit/5594376ebc14f7fab16c0627828729cf0a00a9e6))
+
 <a name="2.2.0"></a>
 ## [2.2.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.2.0) (2024-12-26)
 
