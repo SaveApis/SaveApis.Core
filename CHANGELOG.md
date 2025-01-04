@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.5.0"></a>
+## [2.5.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.5.0) (2025-01-04)
+
+### Features
+
+* Add sso support ([#80](https://www.github.com/SaveApis/SaveApis.Core/issues/80)) ([2aad0d1](https://www.github.com/SaveApis/SaveApis.Core/commit/2aad0d14e9d07d90132c5a27da44bc5b45c187eb))
+
 <a name="2.4.0"></a>
 ## [2.4.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.4.0) (2025-01-04)
 
