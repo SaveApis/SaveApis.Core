@@ -4,4 +4,5 @@ public enum AuthenticationMode
 {
     None,
     Jwt,
+    JwtWithSso,
 }

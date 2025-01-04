@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{C6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveApis.Example", "Examples\SaveApis.Example\SaveApis.Example.csproj", "{D5F1A53E-86C5-47E6-BD03-6B38A6A4835F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SourceGenerator", "SourceGenerator", "{D8584562-B399-44FB-85E7-0CDB1E2D0967}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveApis.SSO.Client", "SourceGenerator\SaveApis.SSO.Client\SaveApis.SSO.Client.csproj", "{D82172F8-8BE6-4F20-989A-7605FF6693FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,8 +30,13 @@ Global
 		{D5F1A53E-86C5-47E6-BD03-6B38A6A4835F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5F1A53E-86C5-47E6-BD03-6B38A6A4835F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5F1A53E-86C5-47E6-BD03-6B38A6A4835F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D82172F8-8BE6-4F20-989A-7605FF6693FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D82172F8-8BE6-4F20-989A-7605FF6693FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D82172F8-8BE6-4F20-989A-7605FF6693FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D82172F8-8BE6-4F20-989A-7605FF6693FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D5F1A53E-86C5-47E6-BD03-6B38A6A4835F} = {C6173DAE-9B08-4664-B13A-2C3BF12A7099}
+		{D82172F8-8BE6-4F20-989A-7605FF6693FF} = {D8584562-B399-44FB-85E7-0CDB1E2D0967}
 	EndGlobalSection
 EndGlobal

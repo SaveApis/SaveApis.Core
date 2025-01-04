@@ -30,9 +30,13 @@ public static class WebApplicationBuilderExtensions
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>(containerBuilder =>
             {
-                if (authenticationMode == AuthenticationMode.Jwt)
+                if (authenticationMode is AuthenticationMode.Jwt or AuthenticationMode.JwtWithSso)
                 {
                     containerBuilder.WithModule<JwtModule>(builder.Configuration);
+                    if (authenticationMode == AuthenticationMode.JwtWithSso)
+                    {
+                        containerBuilder.WithModule<SsoModule>(builder.Configuration);
+                    }
                 }
 
                 containerBuilder.WithModule<EfCoreModule>(builder.Configuration);
