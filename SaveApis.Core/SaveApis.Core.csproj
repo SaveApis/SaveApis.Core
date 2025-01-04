@@ -8,7 +8,7 @@
         <Authors>SaveApis | Software Development &amp; Deployment</Authors>
         <RepositoryUrl>https://github.com/SaveApis/SaveApis.Core/</RepositoryUrl>
         <RepositoryType>GitHub</RepositoryType>
-        <Version>2.5.0</Version>
+        <Version>2.5.1</Version>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 
@@ -69,13 +69,13 @@
 
     <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
         <ItemGroup>
-            <_ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->WithMetadataValue('PrivateAssets', 'All'))"/>
+            <_ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'All'))" />
         </ItemGroup>
 
         <Message Text="Batch for .nupkg: ReferenceCopyLocalPaths = @(_ReferenceCopyLocalPaths), ReferenceCopyLocalPaths.DestinationSubDirectory = %(_ReferenceCopyLocalPaths.DestinationSubDirectory) Filename = %(_ReferenceCopyLocalPaths.Filename) Extension = %(_ReferenceCopyLocalPaths.Extension)" Importance="High" Condition="'@(_ReferenceCopyLocalPaths)' != ''" />
 
         <ItemGroup>
-            <BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)"/>
+            <BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)" />
         </ItemGroup>
     </Target>
 </Project>

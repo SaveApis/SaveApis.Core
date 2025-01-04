@@ -37,6 +37,7 @@ public class JwtModule(IConfiguration configuration) : BaseModule(configuration)
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
                 };
             });
+        services.AddAuthorization();
 
         builder.Populate(services);
 

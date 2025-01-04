@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.5.1"></a>
+## [2.5.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.5.1) (2025-01-04)
+
+### Bug Fixes
+
+* Source generator project is package in nuspec file ([#81](https://www.github.com/SaveApis/SaveApis.Core/issues/81)) ([5bacd88](https://www.github.com/SaveApis/SaveApis.Core/commit/5bacd8806054d4af031fc447dc0e1d3970bba866))
+
 <a name="2.5.0"></a>
 ## [2.5.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.5.0) (2025-01-04)
 
