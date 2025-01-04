@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.4.0"></a>
+## [2.4.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.4.0) (2025-01-04)
+
+### Features
+
+* **hangfire:** Set job expiration time ([#79](https://www.github.com/SaveApis/SaveApis.Core/issues/79)) ([cc2a8fc](https://www.github.com/SaveApis/SaveApis.Core/commit/cc2a8fce6c91aa8ce3805911dbe34c6c4894c212))
+
 <a name="2.3.0"></a>
 ## [2.3.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v2.3.0) (2024-12-30)
 

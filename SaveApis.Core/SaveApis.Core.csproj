@@ -8,7 +8,7 @@
         <Authors>SaveApis | Software Development &amp; Deployment</Authors>
         <RepositoryUrl>https://github.com/SaveApis/SaveApis.Core/</RepositoryUrl>
         <RepositoryType>GitHub</RepositoryType>
-        <Version>2.3.0</Version>
+        <Version>2.4.0</Version>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 
