@@ -70,7 +70,7 @@ public class HangfireModule(IConfiguration configuration) : BaseModule(configura
             {
                 Database = hangfireRedisDatabase,
                 Prefix = hangfireRedisPrefix,
-            });
+            }).WithJobExpirationTimeout(TimeSpan.FromDays(7));
             globalConfiguration.UseCorrelate(provider);
         });
         collection.AddHangfireServer((_, options) =>
