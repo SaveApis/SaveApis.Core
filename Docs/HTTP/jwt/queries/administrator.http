@@ -1,6 +1,0 @@
-﻿GRAPHQL http://localhost/graphql
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0ZXN0IjoidGVzdCIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIiwibmJmIjoxNzM0OTU2MTE1LCJleHAiOjE3MzQ5ODQ5MTUsImlhdCI6MTczNDk1NjExNSwiaXNzIjoiZXhhbXBsZSIsImF1ZCI6ImV4YW1wbGUifQ.jBr3vNiZ1l_oZ1_5wP7DgP53PmL9GOlATxXWWEDg4pN3RLS4hfYGN1TkkwLkUNiVEwqrSYTj0B9ir0TGfiGGpQ
-
-query Administrator {
-    administrator
-}

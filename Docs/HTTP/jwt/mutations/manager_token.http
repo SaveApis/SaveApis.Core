@@ -1,5 +1,0 @@
-﻿GRAPHQL http://localhost/graphql
-
-mutation ManagerToken {
-    managerToken
-}

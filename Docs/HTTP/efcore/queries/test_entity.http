@@ -1,9 +1,0 @@
-﻿GRAPHQL http://localhost/graphql
-
-query TestEntity {
-    testEntities {
-        id        
-        name
-        description
-    }
-}

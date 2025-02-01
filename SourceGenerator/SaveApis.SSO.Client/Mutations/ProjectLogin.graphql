@@ -1,3 +1,0 @@
-﻿mutation ProjectLogin($dto: ProjectLoginDtoInput!) {
-    projectLogin(dto: $dto)
-}
