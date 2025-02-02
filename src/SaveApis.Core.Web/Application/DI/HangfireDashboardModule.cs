@@ -49,8 +49,8 @@ public class HangfireDashboardModule(IConfiguration configuration) : BaseWebModu
 
         application.MapHangfireDashboard("/hangfire", new DashboardOptions
         {
-            Authorization = [..filters],
-            AsyncAuthorization = [..asyncFilters],
+            Authorization = [.. filters],
+            AsyncAuthorization = [.. asyncFilters],
             DarkModeEnabled = true,
             DisplayStorageConnectionString = true,
         });
