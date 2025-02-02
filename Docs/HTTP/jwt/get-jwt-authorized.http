@@ -1,0 +1,2 @@
+﻿GET http://localhost/api/jwt/authorized
+Authorization: Bearer <token>
