@@ -1,4 +1,11 @@
 Generator Changelog
+<a name="1.0.2"></a>
+## [1.0.2](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.0.2) (2025-02-04)
+
+### 🐛 Bug Fixes
+
+* Add settings to pack as SourceGenerator ([#89](https://www.github.com/SaveApis/SaveApis.Core/issues/89)) ([80f2f19](https://www.github.com/SaveApis/SaveApis.Core/commit/80f2f1929aec11fb64c717073c6dd961beae31c8))
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.0.1) (2025-02-04)
 
