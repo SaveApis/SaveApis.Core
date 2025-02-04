@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -9,24 +9,24 @@
         <Title>SaveApis.Core.Common</Title>
         <Authors>SaveApis | Development &amp; Deployment</Authors>
         <PackageProjectUrl>https://github.com/SaveApis</PackageProjectUrl>
-        <PackageIcon>profilbild.ico</PackageIcon>
+        <PackageIcon>profilbild.png</PackageIcon>
         <RepositoryUrl>https://github.com/SaveApis/SaveApis.Core</RepositoryUrl>
         <RepositoryType>github</RepositoryType>
         <PackageTags>saveapis core web</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\SaveApis.Core.Common\SaveApis.Core.Common.csproj"/>
+        <ProjectReference Include="..\SaveApis.Core.Common\SaveApis.Core.Common.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Correlate.AspNetCore" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1"/>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.1"/>
+        <PackageReference Include="Correlate.AspNetCore" Version="6.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.1" />
         <PackageReference Include="Roslynator.Analyzers" Version="4.12.11">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -35,8 +35,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Roslynator.Core" Version="4.12.11"/>
-        <PackageReference Include="Roslynator.CSharp" Version="4.12.11"/>
+        <PackageReference Include="Roslynator.Core" Version="4.12.11" />
+        <PackageReference Include="Roslynator.CSharp" Version="4.12.11" />
         <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.12.11">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -45,11 +45,11 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="profilbild.ico">
+      <None Update="profilbild.png">
         <Pack>True</Pack>
         <PackagePath></PackagePath>
       </None>
