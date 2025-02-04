@@ -9,7 +9,7 @@
         <Title>SaveApis.Core.Generator</Title>
         <Authors>SaveApis | Development &amp; Deployment</Authors>
         <PackageProjectUrl>https://github.com/SaveApis</PackageProjectUrl>
-        <PackageIcon>profilbild.ico</PackageIcon>
+        <PackageIcon>profilbild.png</PackageIcon>
         <RepositoryUrl>https://github.com/SaveApis/SaveApis.Core</RepositoryUrl>
         <RepositoryType>github</RepositoryType>
         <PackageTags>saveapis core generator</PackageTags>
@@ -17,7 +17,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.12.0"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.12.0" />
         <PackageReference Include="Roslynator.Analyzers" Version="4.12.11">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,8 +26,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Roslynator.Core" Version="4.12.11"/>
-        <PackageReference Include="Roslynator.CSharp" Version="4.12.11"/>
+        <PackageReference Include="Roslynator.Core" Version="4.12.11" />
+        <PackageReference Include="Roslynator.CSharp" Version="4.12.11" />
         <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.12.11">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -39,10 +39,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="profilbild.ico">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-        </None>
+      <None Update="profilbild.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
     </ItemGroup>
 
 </Project>
