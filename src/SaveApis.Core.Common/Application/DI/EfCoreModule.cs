@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
 using Autofac;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using SaveApis.Core.Common.Application.Hangfire.Events;
 using SaveApis.Core.Common.Infrastructure.DI;
 using SaveApis.Core.Common.Infrastructure.Extension;
 using SaveApis.Core.Common.Infrastructure.Persistence.Sql;
@@ -20,9 +22,16 @@ public class EfCoreModule(IEnumerable<Assembly> assemblies) : BaseModule
 
         builder.RegisterBuildCallback(scope =>
         {
+            var mediator = scope.Resolve<IMediator>();
             var logger = scope.Resolve<ILogger>();
 
-            foreach (var factory in scope.Resolve<IEnumerable<IDesignTimeDbContextFactory<BaseDbContext>>>().ToList())
+            var factories = scope.Resolve<IEnumerable<IDesignTimeDbContextFactory<BaseDbContext>>>().ToList();
+            if (factories.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var factory in factories)
             {
                 using var context = factory.Create();
 
@@ -30,6 +39,8 @@ public class EfCoreModule(IEnumerable<Assembly> assemblies) : BaseModule
                 context.Database.Migrate();
                 logger.Information("{Context}: Migrate - Done", context.GetType().Name);
             }
+
+            mediator.Publish(new MigrationCompletedEvent()).GetAwaiter().GetResult();
         });
     }
 }

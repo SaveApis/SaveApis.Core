@@ -50,7 +50,7 @@
       - database_sql_database=example
       - database_sql_user=example
       - database_sql_password=example
-      - hangfire_server_type=server
+      - hangfire_server_type=worker
       - hangfire_redis_server=redis
       - hangfire_redis_port=6379
       - hangfire_redis_database=0

@@ -5,6 +5,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <LangVersion>latest</LangVersion>
+        <ApplicationIcon>profilbild.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>

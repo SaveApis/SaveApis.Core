@@ -4,8 +4,16 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
-        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <Version>1.0.0</Version>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Title>SaveApis.Core.Generator</Title>
+        <Authors>SaveApis | Development &amp; Deployment</Authors>
+        <PackageProjectUrl>https://github.com/SaveApis</PackageProjectUrl>
+        <PackageIcon>profilbild.ico</PackageIcon>
+        <RepositoryUrl>https://github.com/SaveApis/SaveApis.Core</RepositoryUrl>
+        <RepositoryType>github</RepositoryType>
+        <PackageTags>saveapis core generator</PackageTags>
+        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,6 +36,13 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="profilbild.ico">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
     </ItemGroup>
 
 </Project>

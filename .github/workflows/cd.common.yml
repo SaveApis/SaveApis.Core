@@ -1,0 +1,45 @@
+﻿name: CD (Common)
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/SaveApis.Core.Common/CHANGELOG.md'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4.3.0
+        with:
+          dotnet-version: 9.0.x
+      - name: Cache
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.nuget/packages
+            **/obj
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+      - name: Setup Nuget Feeds
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          dotnet nuget add source ${{ secrets.HANGFIRE_ACE_URL }} --name Hangfire.ACE --username ${{ secrets.HANGFIRE_ACE_USER }} --password ${{ secrets.HANGFIRE_ACE_TOKEN }} --store-password-in-clear-text
+          dotnet nuget add source ${{ secrets.HANGFIRE_PRO_URL }} --name Hangfire.Pro --username ${{ secrets.HANGFIRE_PRO_USER }} --password ${{ secrets.HANGFIRE_PRO_TOKEN }} --store-password-in-clear-text
+      - name: Restore dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: dotnet restore .
+      - name: Package
+        run: dotnet pack --no-restore --nologo --configuration Release --output artifact src/SaveApis.Core.Common/SaveApis.Core.Common.csproj
+      - name: Publish
+        run: dotnet nuget push artifact/*.nupkg --source https://nuget.pkg.github.com/SaveApis/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
