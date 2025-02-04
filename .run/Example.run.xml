@@ -2,15 +2,16 @@
   <configuration default="false" name="Example" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
     <deployment type="docker-compose.yml">
       <settings>
-        <option name="composeProjectName" value="saveapis-example" />
+        <option name="composeProjectName" value="example" />
         <option name="envFilePath" value="" />
         <option name="commandLineOptions" value="--build" />
         <option name="services">
           <list>
-            <option value="example" />
+            <option value="web-server" />
+            <option value="web-worker" />
           </list>
         </option>
-        <option name="sourceFilePath" value="Docker/docker-compose.yml" />
+        <option name="sourceFilePath" value="Docker/docker-compose.yaml" />
         <option name="upForceRecreate" value="true" />
         <option name="upRemoveOrphans" value="true" />
         <option name="upRenewAnonVolumes" value="true" />

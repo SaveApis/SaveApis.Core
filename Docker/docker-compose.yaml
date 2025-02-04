@@ -1,0 +1,94 @@
+﻿services:
+  web-server:
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    hostname: web
+    image: example-web:dev
+    build:
+      context: ..
+      dockerfile: examples/Example.Web/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+      - database_sql_name=example
+      - database_sql_server=mysql
+      - database_sql_port=3306
+      - database_sql_database=example
+      - database_sql_user=example
+      - database_sql_password=example
+      - hangfire_server_type=server
+      - hangfire_redis_server=redis
+      - hangfire_redis_port=6379
+      - hangfire_redis_database=0
+      - "hangfire_redis_prefix=example:hangfire:"
+      - jwt_audience=example
+      - jwt_issuer=example
+      - jwt_key=<key>
+      - jwt_expiration=12
+    ports:
+      - "80:80"
+  web-worker:
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    hostname: web
+    image: example-web:dev
+    build:
+      context: ..
+      dockerfile: examples/Example.Web/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+      - database_sql_name=example
+      - database_sql_server=mysql
+      - database_sql_port=3306
+      - database_sql_database=example
+      - database_sql_user=example
+      - database_sql_password=example
+      - hangfire_server_type=worker
+      - hangfire_redis_server=redis
+      - hangfire_redis_port=6379
+      - hangfire_redis_database=0
+      - "hangfire_redis_prefix=example:hangfire:"
+      - jwt_audience=example
+      - jwt_issuer=example
+      - jwt_key=<key>
+      - jwt_expiration=12
+  mysql:
+    hostname: mysql
+    image: mysql:9.1.0
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=example
+      - MYSQL_USER=example
+      - MYSQL_PASSWORD=example
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uexample", "-pexample" ]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+  redis:
+    hostname: redis
+    image: redis:8.0-M02-alpine3.20
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping", "|", "grep", "PONG" ]
+      interval: 1s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mysql:
+  redis:

@@ -1,0 +1,96 @@
+﻿{
+    "skipDirty": true,
+    "silent": false,
+    "projects": [
+        {
+            "name": "common",
+            "path": "src/SaveApis.Core.Common",
+            "tagTemplate": "{name}-v{version}",
+            "changelog": {
+                "header": "Common Changelog",
+                "sections": [
+                    {
+                        "type": "feat",
+                        "section": "✨ Features",
+                        "hidden": false
+                    },
+                    {
+                        "type": "fix",
+                        "section": "🐛 Bug Fixes",
+                        "hidden": false
+                    },
+                    {
+                        "type": "perf",
+                        "section": "🚀 Performance",
+                        "hidden": false
+                    },
+                    {
+                        "type": "ci",
+                        "section": "👷 Continuous Integration",
+                        "hidden": false
+                    }
+                ]
+            }
+        },
+        {
+            "name": "generator",
+            "path": "src/SaveApis.Core.Generator",
+            "tagTemplate": "{name}-v{version}",
+            "changelog": {
+                "header": "Generator Changelog",
+                "sections": [
+                    {
+                        "type": "feat",
+                        "section": "✨ Features",
+                        "hidden": false
+                    },
+                    {
+                        "type": "fix",
+                        "section": "🐛 Bug Fixes",
+                        "hidden": false
+                    },
+                    {
+                        "type": "perf",
+                        "section": "🚀 Performance",
+                        "hidden": false
+                    },
+                    {
+                        "type": "ci",
+                        "section": "👷 Continuous Integration",
+                        "hidden": false
+                    }
+                ]
+            }
+        },
+        {
+            "name": "web",
+            "path": "src/SaveApis.Core.Web",
+            "tagTemplate": "{name}-v{version}",
+            "changelog": {
+                "header": "Web Changelog",
+                "sections": [
+                    {
+                        "type": "feat",
+                        "section": "✨ Features",
+                        "hidden": false
+                    },
+                    {
+                        "type": "fix",
+                        "section": "🐛 Bug Fixes",
+                        "hidden": false
+                    },
+                    {
+                        "type": "perf",
+                        "section": "🚀 Performance",
+                        "hidden": false
+                    },
+                    {
+                        "type": "ci",
+                        "section": "👷 Continuous Integration",
+                        "hidden": false
+                    }
+                ]
+            }
+        }
+    ]
+}
