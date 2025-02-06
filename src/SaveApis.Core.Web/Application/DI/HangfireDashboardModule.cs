@@ -2,16 +2,15 @@
 using Hangfire;
 using Hangfire.Dashboard;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SaveApis.Core.Common.Application.Hangfire.Types;
+using SaveApis.Core.Common.Application.Types;
 using SaveApis.Core.Web.Infrastructure.DI;
 
 namespace SaveApis.Core.Web.Application.DI;
 
-public class HangfireDashboardModule(IConfiguration configuration) : BaseWebModule
+public class HangfireDashboardModule(ServerType serverType) : BaseWebModule
 {
     protected override void Load(ContainerBuilder builder)
     {
@@ -19,8 +18,7 @@ public class HangfireDashboardModule(IConfiguration configuration) : BaseWebModu
 
     protected override void PostAuthentication(WebApplication application)
     {
-        var hangfireType = Enum.TryParse(configuration["hangfire_server_type"], true, out HangfireServerType serverType) ? serverType : HangfireServerType.Server;
-        if (hangfireType == HangfireServerType.Worker)
+        if (serverType is ServerType.Worker or ServerType.Server)
         {
             return;
         }

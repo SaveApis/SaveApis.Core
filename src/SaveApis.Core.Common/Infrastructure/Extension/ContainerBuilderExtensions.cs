@@ -3,6 +3,7 @@ using Autofac;
 using Microsoft.Extensions.Configuration;
 using SaveApis.Core.Common.Application.DI;
 using SaveApis.Core.Common.Application.Exceptions;
+using SaveApis.Core.Common.Application.Types;
 using SaveApis.Core.Common.Infrastructure.DI;
 
 namespace SaveApis.Core.Common.Infrastructure.Extension;
@@ -22,11 +23,11 @@ public static class ContainerBuilderExtensions
         return builder;
     }
 
-    public static ContainerBuilder RegisterCommonModules(this ContainerBuilder builder, IEnumerable<Assembly> assemblies, IConfiguration configuration, Action<ContainerBuilder>? additionalModules = null)
+    public static ContainerBuilder RegisterCommonModules(this ContainerBuilder builder, ServerType serverType, IEnumerable<Assembly> assemblies, IConfiguration configuration, Action<ContainerBuilder>? additionalModules = null)
     {
         builder.WithCommonModule<MediatorModule>(assemblies);
         builder.WithCommonModule<EfCoreModule>(assemblies);
-        builder.WithCommonModule<HangfireModule>(configuration, assemblies);
+        builder.WithCommonModule<HangfireModule>(configuration, serverType, assemblies);
         additionalModules?.Invoke(builder);
 
         builder.WithCommonModule<SerilogModule>();

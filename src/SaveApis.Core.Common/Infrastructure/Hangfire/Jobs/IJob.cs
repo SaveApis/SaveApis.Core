@@ -1,4 +1,5 @@
-﻿using SaveApis.Core.Common.Infrastructure.Hangfire.Events;
+﻿using Hangfire.Server;
+using SaveApis.Core.Common.Infrastructure.Hangfire.Events;
 
 namespace SaveApis.Core.Common.Infrastructure.Hangfire.Jobs;
 
@@ -20,7 +21,8 @@ public interface IJob<in TEvent> where TEvent : IEvent
     /// Method to run the job
     /// </summary>
     /// <param name="event">Instance of the event</param>
+    /// <param name="performContext">Perform context of the Job. Is getting injected by Hangfire</param>
     /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
     /// <returns><see cref="Task"/></returns>
-    Task RunAsync(TEvent @event, CancellationToken cancellationToken = default);
+    Task RunAsync(TEvent @event, PerformContext? performContext = null, CancellationToken cancellationToken = default);
 }
