@@ -27,7 +27,7 @@ public class HangfireNotificationHandler<TEvent>(ILogger logger, IBackgroundJobC
             var queue = ReadHangfireQueue(job);
 
             logger.Information("Enqueueing Job '{Job}' to Queue '{Queue}'", job, queue);
-            client.Enqueue(queue.ToString().ToLowerInvariant(), () => job.RunAsync(notification, cancellationToken));
+            client.Enqueue(queue.ToString().ToLowerInvariant(), () => job.RunAsync(notification, null, CancellationToken.None));
         }
     }
     private HangfireQueue ReadHangfireQueue(IJob<TEvent> job)

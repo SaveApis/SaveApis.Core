@@ -9,6 +9,7 @@
           <list>
             <option value="web-server" />
             <option value="web-worker" />
+            <option value="web-backend" />
           </list>
         </option>
         <option name="sourceFilePath" value="Docker/docker-compose.yaml" />

@@ -2,6 +2,8 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Hangfire;
+using Hangfire.Console;
+using Hangfire.Correlate;
 using Hangfire.Dashboard;
 using Hangfire.Pro.Redis;
 using MediatR;
@@ -10,25 +12,25 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Converters;
 using SaveApis.Core.Common.Application.Hangfire.Events;
 using SaveApis.Core.Common.Application.Hangfire.Types;
+using SaveApis.Core.Common.Application.Types;
 using SaveApis.Core.Common.Infrastructure.DI;
 using SaveApis.Core.Common.Infrastructure.Hangfire.Jobs;
 
 namespace SaveApis.Core.Common.Application.DI;
 
-public class HangfireModule(IConfiguration configuration, IEnumerable<Assembly> assemblies) : BaseModule
+public class HangfireModule(IConfiguration configuration, ServerType serverType, IEnumerable<Assembly> assemblies) : BaseModule
 {
     protected override void Load(ContainerBuilder builder)
     {
-        var hangfireType = Enum.TryParse(configuration["hangfire_server_type"], true, out HangfireServerType serverType) ? serverType : HangfireServerType.Server;
         RegisterHangfire(builder);
 
-        switch (hangfireType)
+        switch (serverType)
         {
-            case HangfireServerType.Worker:
+            case ServerType.Worker:
                 RegisterHangfireWorker(builder);
 
                 break;
-            case HangfireServerType.Server:
+            case ServerType.Backend:
             {
                 var assemblyList = assemblies.ToArray();
 
@@ -50,7 +52,7 @@ public class HangfireModule(IConfiguration configuration, IEnumerable<Assembly> 
         {
             var mediator = scope.Resolve<IMediator>();
 
-            mediator.Publish(new ApplicationStartedEvent(hangfireType)).GetAwaiter().GetResult();
+            mediator.Publish(new ApplicationStartedEvent(serverType)).GetAwaiter().GetResult();
         });
     }
 
@@ -69,14 +71,21 @@ public class HangfireModule(IConfiguration configuration, IEnumerable<Assembly> 
             Prefix = prefix.EndsWith(':') ? prefix : $"{prefix}:",
         };
 
-        collection.AddHangfire((_, globalConfiguration) =>
+        collection.AddHangfire((serviceProvider, globalConfiguration) =>
         {
             globalConfiguration
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
                 .UseSimpleAssemblyNameTypeSerializer()
                 .UseRecommendedSerializerSettings(settings => settings.Converters.Add(new StringEnumConverter()))
                 .UseRedisStorage($"{server}:{port}", options)
-                .WithJobExpirationTimeout(TimeSpan.FromDays(7));
+                .WithJobExpirationTimeout(TimeSpan.FromDays(7))
+                .UseCorrelate(serviceProvider)
+                .UseConsole(new ConsoleOptions
+                {
+                    BackgroundColor = "#23272e",
+                    TextColor = "#FFFFFF",
+                    TimestampColor = "#00FF00",
+                });
         });
 
         builder.Populate(collection);

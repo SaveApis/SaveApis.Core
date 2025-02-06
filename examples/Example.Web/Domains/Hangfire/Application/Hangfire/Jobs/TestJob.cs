@@ -1,4 +1,5 @@
 ﻿using Example.Web.Domains.Hangfire.Application.Hangfire.Events;
+using Hangfire.Server;
 using SaveApis.Core.Common.Application.Hangfire.Types;
 using SaveApis.Core.Common.Infrastructure.Hangfire.Attributes;
 using SaveApis.Core.Common.Infrastructure.Hangfire.Jobs;
@@ -10,7 +11,7 @@ namespace Example.Web.Domains.Hangfire.Application.Hangfire.Jobs;
 public class TestJob(ILogger logger) : BaseJob<TestRecurringEvent>(logger)
 {
     [HangfireJobName("Test Job")]
-    public override Task RunAsync(TestRecurringEvent @event, CancellationToken cancellationToken = default)
+    public override Task RunAsync(TestRecurringEvent @event, PerformContext? performContext = null, CancellationToken cancellationToken = default)
     {
         return Task.CompletedTask;
     }

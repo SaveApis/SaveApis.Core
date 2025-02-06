@@ -1,4 +1,5 @@
-﻿using SaveApis.Core.Common.Infrastructure.Hangfire.Events;
+﻿using Hangfire.Server;
+using SaveApis.Core.Common.Infrastructure.Hangfire.Events;
 using Serilog;
 
 namespace SaveApis.Core.Common.Infrastructure.Hangfire.Jobs;
@@ -17,5 +18,5 @@ public abstract class BaseJob<TEvent>(ILogger logger) : IJob<TEvent> where TEven
         return Task.FromResult(CheckSupport(@event));
     }
 
-    public abstract Task RunAsync(TEvent @event, CancellationToken cancellationToken = default);
+    public abstract Task RunAsync(TEvent @event, PerformContext? performContext = null, CancellationToken cancellationToken = default);
 }
