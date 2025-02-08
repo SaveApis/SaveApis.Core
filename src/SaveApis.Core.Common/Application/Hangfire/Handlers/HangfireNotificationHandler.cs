@@ -14,19 +14,19 @@ public class HangfireNotificationHandler<TEvent>(ILogger logger, IBackgroundJobC
     public async Task Handle(TEvent notification, CancellationToken cancellationToken)
     {
         var jobs = assignedJobs.ToList();
-        logger.Information("Received Event '{Event}' (Jobs: {Count})", notification, jobs.Count);
+        logger.Information("Received Event '{Event}' (Jobs: {Count})", notification.GetType().FullName, jobs.Count);
 
         foreach (var job in jobs)
         {
             if (!await job.CheckSupportAsync(notification, cancellationToken).ConfigureAwait(false))
             {
-                logger.Information("Job '{Job}' does not support Event '{Event}'", job, notification);
+                logger.Information("Job '{Job}' does not support Event '{Event}'", job.GetType().FullName, notification.GetType().FullName);
                 continue;
             }
 
             var queue = ReadHangfireQueue(job);
 
-            logger.Information("Enqueueing Job '{Job}' to Queue '{Queue}'", job, queue);
+            logger.Information("Enqueueing Job '{Job}' ('{Event}') to Queue '{Queue}'", job.GetType().FullName, notification.GetType().FullName, queue);
             client.Enqueue(queue.ToString().ToLowerInvariant(), () => job.RunAsync(notification, null, CancellationToken.None));
         }
     }
