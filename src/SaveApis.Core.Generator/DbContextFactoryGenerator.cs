@@ -52,20 +52,35 @@ public class DbContextFactoryGenerator : IIncrementalGenerator
     {
         var @namespace = syntax.FirstAncestorOrSelf<FileScopedNamespaceDeclarationSyntax>()!.Name.ToString();
 
+        var interfaceClass = $$"""
+                               namespace {{@namespace}};
+
+                               public interface I{{syntax.Identifier}}Factory
+                               {
+                                    {{syntax.Identifier}} Create();
+                               }
+                               """;
+
         var code = $$"""
                      using Microsoft.Extensions.Configuration;
                      using SaveApis.Core.Common.Infrastructure.Persistence.Sql.Factories;
 
                      namespace {{@namespace}};
 
-                     public class {{syntax.Identifier}}Factory(IConfiguration configuration) : BaseDesignTimeDbContextFactory<{{syntax.Identifier}}>(configuration)
+                     public class {{syntax.Identifier}}Factory(IConfiguration configuration) : BaseDesignTimeDbContextFactory<{{syntax.Identifier}}>(configuration), I{{syntax.Identifier}}Factory
                      {
                          public {{syntax.Identifier}}Factory() : this(new ConfigurationBuilder().AddInMemoryCollection().Build())
                          {
                          }
+                         
+                         public {{syntax.Identifier}} Create()
+                         {
+                             return CreateDbContext([]);
+                         }
                      }
                      """;
 
+        productionContext.AddSource($"I{syntax.Identifier}Factory.g.cs", interfaceClass);
         productionContext.AddSource($"{syntax.Identifier}Factory.g.cs", code);
     }
 }

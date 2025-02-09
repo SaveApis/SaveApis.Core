@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore.Design;
 using SaveApis.Core.Common.Application.Hangfire.Events;
 using SaveApis.Core.Common.Application.Hangfire.Types;
 using SaveApis.Core.Common.Application.Types;
-using SaveApis.Core.Common.Infrastructure.Extension;
 using SaveApis.Core.Common.Infrastructure.Hangfire.Attributes;
 using SaveApis.Core.Common.Infrastructure.Hangfire.Jobs;
 using SaveApis.Core.Common.Infrastructure.Persistence.Sql;
@@ -29,7 +28,7 @@ public class MigrateDatabasesJob(ILogger logger, IMediator mediator, IEnumerable
 
         foreach (var factory in factories.ToList().WithProgress(bar))
         {
-            var context = factory.Create();
+            var context = factory.CreateDbContext([]);
             performContext.WriteLine($"Migrating database: {context.GetType().Name}");
             await context.Database.MigrateAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
         }
