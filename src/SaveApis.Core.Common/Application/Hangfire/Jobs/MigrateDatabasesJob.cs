@@ -1,5 +1,6 @@
 ﻿using Hangfire.Console;
 using Hangfire.Server;
+using Hangfire.Throttling;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -14,6 +15,7 @@ using Serilog;
 namespace SaveApis.Core.Common.Application.Hangfire.Jobs;
 
 [HangfireQueue(HangfireQueue.High)]
+[Mutex("core:database:migrate")]
 public class MigrateDatabasesJob(ILogger logger, IMediator mediator, IEnumerable<IDesignTimeDbContextFactory<BaseDbContext>> factories) : BaseJob<ApplicationStartedEvent>(logger)
 {
     protected override bool CheckSupport(ApplicationStartedEvent @event)

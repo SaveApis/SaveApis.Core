@@ -3,6 +3,7 @@ using Autofac;
 using Hangfire;
 using Hangfire.Console;
 using Hangfire.Server;
+using Hangfire.Throttling;
 using MediatR;
 using SaveApis.Core.Common.Application.Hangfire.Events;
 using SaveApis.Core.Common.Application.Hangfire.Types;
@@ -16,6 +17,7 @@ using Serilog;
 namespace SaveApis.Core.Common.Application.Hangfire.Jobs;
 
 [HangfireQueue(HangfireQueue.System)]
+[Mutex("core:hangfire:recurring-event:register")]
 public class RegisterRecurringEventsJob(ILogger logger, IMediator mediator, IRecurringJobManagerV2 manager, IAssemblyHelper assemblyHelper) : BaseJob<ApplicationStartedEvent>(logger)
 {
     protected override bool CheckSupport(ApplicationStartedEvent @event)
