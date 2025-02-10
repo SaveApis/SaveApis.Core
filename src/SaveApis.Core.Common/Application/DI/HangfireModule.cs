@@ -85,8 +85,7 @@ public class HangfireModule(IConfiguration configuration, ServerType serverType,
                     BackgroundColor = "#23272e",
                     TextColor = "#FFFFFF",
                     TimestampColor = "#00FF00",
-                })
-                .UseThrottling();
+                });
         });
 
         builder.Populate(collection);
