@@ -1,4 +1,7 @@
 Web Changelog
+<a name="1.1.3"></a>
+## [1.1.3](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.1.3) (2025-02-10)
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.1.2) (2025-02-09)
 
