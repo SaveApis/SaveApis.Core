@@ -1,4 +1,11 @@
 Common Changelog
+<a name="1.2.1"></a>
+## [1.2.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.2.1) (2025-02-10)
+
+### 🐛 Bug Fixes
+
+* **common:** Add mutex to prevent duplicate job execution ([#98](https://www.github.com/SaveApis/SaveApis.Core/issues/98)) ([d724989](https://www.github.com/SaveApis/SaveApis.Core/commit/d72498913dbf1495021ba9f87b4544286b744011))
+
 <a name="1.2.0"></a>
 ## [1.2.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.2.0) (2025-02-09)
 
