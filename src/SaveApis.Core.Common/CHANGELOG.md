@@ -1,4 +1,11 @@
 Common Changelog
+<a name="1.2.2"></a>
+## [1.2.2](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.2.2) (2025-02-10)
+
+### 🐛 Bug Fixes
+
+* Fix missing throtteling registration ([#100](https://www.github.com/SaveApis/SaveApis.Core/issues/100)) ([4817fb0](https://www.github.com/SaveApis/SaveApis.Core/commit/4817fb0b111f807b164530d69ff0338024431400))
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.2.1) (2025-02-10)
 
