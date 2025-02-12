@@ -1,4 +1,11 @@
 Common Changelog
+<a name="1.4.0"></a>
+## [1.4.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.4.0) (2025-02-12)
+
+### ✨ Features
+
+* **common:** Outsource Logging-Domain ([#104](https://www.github.com/SaveApis/SaveApis.Core/issues/104)) ([18569a8](https://www.github.com/SaveApis/SaveApis.Core/commit/18569a8e0c58d35cf5d2c36cad7a4ab6f3816dac))
+
 <a name="1.3.0"></a>
 ## [1.3.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.3.0) (2025-02-12)
 
