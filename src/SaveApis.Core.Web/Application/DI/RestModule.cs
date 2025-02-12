@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Converters;
 using SaveApis.Core.Web.Infrastructure.DI;
 
 namespace SaveApis.Core.Web.Application.DI;
@@ -13,7 +14,7 @@ public class RestModule(IEnumerable<Assembly> assemblies) : BaseWebModule
     {
         var collection = new ServiceCollection();
 
-        var mvcBuilder = collection.AddControllers().AddNewtonsoftJson();
+        var mvcBuilder = collection.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
         foreach (var assembly in assemblies)
         {
             mvcBuilder.AddApplicationPart(assembly);
