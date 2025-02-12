@@ -1,4 +1,11 @@
 Common Changelog
+<a name="1.3.0"></a>
+## [1.3.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.3.0) (2025-02-12)
+
+### ✨ Features
+
+* **common:** Add tracking interface ([#103](https://www.github.com/SaveApis/SaveApis.Core/issues/103)) ([6c142ba](https://www.github.com/SaveApis/SaveApis.Core/commit/6c142ba62042f96886e31d86c3b5e61a022d3c8e))
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.2.2) (2025-02-10)
 
