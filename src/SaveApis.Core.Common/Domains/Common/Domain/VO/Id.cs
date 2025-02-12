@@ -1,6 +1,6 @@
 ﻿using Vogen;
 
-namespace SaveApis.Core.Common.Domain.VO;
+namespace SaveApis.Core.Common.Domains.Common.Domain.VO;
 
 [ValueObject<Guid>(conversions: Conversions.NewtonsoftJson | Conversions.EfCoreValueConverter)]
 public partial class Id

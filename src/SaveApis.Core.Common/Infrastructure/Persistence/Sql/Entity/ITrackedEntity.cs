@@ -1,4 +1,5 @@
-﻿using SaveApis.Core.Common.Domain.VO;
+﻿
+using SaveApis.Core.Common.Domains.Common.Domain.VO;
 
 namespace SaveApis.Core.Common.Infrastructure.Persistence.Sql.Entity;
 
