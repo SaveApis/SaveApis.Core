@@ -16,21 +16,25 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="8.2.0" />
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
-        <PackageReference Include="FluentResults" Version="3.16.0" />
-        <PackageReference Include="FluentResults.Extensions.AspNetCore" Version="0.1.0" />
-        <PackageReference Include="Hangfire" Version="1.8.17" />
-        <PackageReference Include="Hangfire.Autofac" Version="2.7.0" />
-        <PackageReference Include="Hangfire.Console" Version="1.4.3" />
-        <PackageReference Include="Hangfire.Correlate" Version="2.2.0" />
-        <PackageReference Include="Hangfire.Pro.Redis" Version="3.1.0" />
-        <PackageReference Include="Hangfire.Throttling" Version="1.4.1" />
-        <PackageReference Include="MediatR" Version="12.4.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
-        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-preview.2.efcore.9.0.0" />
-        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Json.Newtonsoft" Version="9.0.0-preview.2.efcore.9.0.0" />
-        <PackageReference Include="Riok.Mapperly" Version="4.1.1" />
+        <PackageReference Include="Autofac" Version="8.2.0"/>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0"/>
+        <PackageReference Include="FluentResults" Version="3.16.0"/>
+        <PackageReference Include="FluentResults.Extensions.AspNetCore" Version="0.1.0"/>
+        <PackageReference Include="Hangfire" Version="1.8.17"/>
+        <PackageReference Include="Hangfire.Autofac" Version="2.7.0"/>
+        <PackageReference Include="Hangfire.Console" Version="1.4.3"/>
+        <PackageReference Include="Hangfire.Correlate" Version="2.2.0"/>
+        <PackageReference Include="Hangfire.Pro.Redis" Version="3.1.1" />
+        <PackageReference Include="Hangfire.Throttling" Version="1.4.1"/>
+        <PackageReference Include="MediatR" Version="12.4.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-preview.2.efcore.9.0.0"/>
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Json.Newtonsoft" Version="9.0.0-preview.2.efcore.9.0.0"/>
+        <PackageReference Include="Riok.Mapperly" Version="4.1.1"/>
         <PackageReference Include="Roslynator.Analyzers" Version="4.12.11">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -39,8 +43,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Roslynator.Core" Version="4.12.11" />
-        <PackageReference Include="Roslynator.CSharp" Version="4.12.11" />
+        <PackageReference Include="Roslynator.Core" Version="4.12.11"/>
+        <PackageReference Include="Roslynator.CSharp" Version="4.12.11"/>
         <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.12.11">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -49,18 +53,26 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
-        <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
-        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
-        <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-        <PackageReference Include="Vogen" Version="6.0.0" />
+        <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1"/>
+        <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0"/>
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0"/>
+        <PackageReference Include="Serilog.Sinks.File" Version="6.0.0"/>
+        <PackageReference Include="Vogen" Version="6.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="profilbild.png">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-      </None>
+        <None Update="profilbild.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\SaveApis.Core.Generator\SaveApis.Core.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Domains\Common\Domain\" />
     </ItemGroup>
 
 </Project>
