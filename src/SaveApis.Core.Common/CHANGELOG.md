@@ -1,4 +1,11 @@
 Common Changelog
+<a name="1.4.1"></a>
+## [1.4.1](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.4.1) (2025-02-12)
+
+### 🐛 Bug Fixes
+
+* **common:** Wrong baseclass type ([#105](https://www.github.com/SaveApis/SaveApis.Core/issues/105)) ([444751c](https://www.github.com/SaveApis/SaveApis.Core/commit/444751c0b43502153ae7fae5c353509bf8ac787a))
+
 <a name="1.4.0"></a>
 ## [1.4.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.4.0) (2025-02-12)
 
