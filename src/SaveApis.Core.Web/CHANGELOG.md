@@ -1,4 +1,11 @@
 Web Changelog
+<a name="1.2.0"></a>
+## [1.2.0](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.2.0) (2025-02-12)
+
+### ✨ Features
+
+* **web:** Add StringEnumConverter to REST ([#102](https://www.github.com/SaveApis/SaveApis.Core/issues/102)) ([09b16b1](https://www.github.com/SaveApis/SaveApis.Core/commit/09b16b1354ab3b02fe4f7c2a142b1eede11628cb))
+
 <a name="1.1.4"></a>
 ## [1.1.4](https://www.github.com/SaveApis/SaveApis.Core/releases/tag/v1.1.4) (2025-02-10)
 
